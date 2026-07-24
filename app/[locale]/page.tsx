@@ -4,6 +4,7 @@ import { HeroSection } from "@/features/hero/HeroSection";
 import { FounderStoryView } from "@/features/founder-story/FounderStoryView";
 import { CareerTimelineView } from "@/features/career-timeline/CareerTimelineView";
 import { TechLabSection } from "@/features/tech-lab/TechLabSection";
+import { KnowledgeCosmosSection } from "@/features/knowledge-cosmos/KnowledgeCosmosSection";
 import { PhilosophySection } from "@/features/philosophy/PhilosophySection";
 import { ContactSection } from "@/features/contact/ContactSection";
 import { routing } from "@/i18n/routing";
@@ -28,6 +29,7 @@ export default async function LocaleHomePage({
       <FounderStoryView locale={appLocale} />
       <CareerTimelineView locale={appLocale} />
       <TechLabSection locale={appLocale} />
+      <KnowledgeCosmosSection locale={appLocale} />
       <PhilosophySection locale={appLocale} />
       <ContactSection locale={appLocale} />
     </>

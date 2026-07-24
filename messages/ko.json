@@ -13,10 +13,22 @@
     "subheading": "샌드캐슬 프로토콜"
   },
   "techLab": {
-    "heading": "기술 시험장"
+    "heading": "기술 시험장",
+    "expandDemo": "인터랙티브 데모 보기",
+    "collapseDemo": "인터랙티브 데모 숨기기"
+  },
+  "knowledgeCosmos": {
+    "heading": "지식 우주",
+    "expandConstellation": "별자리 보기",
+    "collapseConstellation": "별자리 숨기기"
   },
   "contact": {
     "heading": "연락하기",
     "emailButton": "이메일 보내기"
+  },
+  "nav": {
+    "home": "히어로",
+    "ariaLabel": "사이트 내비게이션",
+    "summaryToggle": "요약 모드"
   }
 }

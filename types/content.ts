@@ -60,3 +60,15 @@ export interface PhilosophyContent {
 export interface ContactContent {
   cta: string;
 }
+
+export interface KnowledgeCosmosConcept {
+  id: string;
+  title: string;
+  explanation: string;
+  prerequisiteIds: string[];
+}
+
+export interface KnowledgeCosmosContent {
+  intro: string;
+  concepts: KnowledgeCosmosConcept[];
+}
