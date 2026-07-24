@@ -3,6 +3,21 @@
     "title": "권승찬"
   },
   "hero": {
-    "tagline": "이론을 밑바닥부터 재구현하는 파운더 엔지니어."
+    "tagline": "이론을 밑바닥부터 재구현하는 파운더 엔지니어.",
+    "roleLine": "고등학생, 스타트업 창업자, 엔지니어"
+  },
+  "founderStory": {
+    "heading": "파운더 스토리"
+  },
+  "careerTimeline": {
+    "heading": "커리어 타임라인"
+  },
+  "philosophy": {
+    "heading": "철학",
+    "subheading": "샌드캐슬 프로토콜"
+  },
+  "contact": {
+    "heading": "연락하기",
+    "emailButton": "이메일 보내기"
   }
 }
