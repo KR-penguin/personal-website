@@ -24,7 +24,7 @@ export default async function LocaleHomePage({
   const appLocale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
 
   return (
-    <>
+    <main id="main-content">
       <HeroSection locale={appLocale} />
       <FounderStoryView locale={appLocale} />
       <CareerTimelineView locale={appLocale} />
@@ -32,6 +32,6 @@ export default async function LocaleHomePage({
       <KnowledgeCosmosSection locale={appLocale} />
       <PhilosophySection locale={appLocale} />
       <ContactSection locale={appLocale} />
-    </>
+    </main>
   );
 }

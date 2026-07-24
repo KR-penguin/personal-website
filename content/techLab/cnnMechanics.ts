@@ -4,6 +4,7 @@ import type { KernelId } from "@/features/tech-lab/cnn-mechanics/logic";
 export interface CnnMechanicsLabels {
   title: string;
   canvasLabel: string;
+  canvasKeyboardInstructions: string;
   clearButton: string;
   kernelLabel: string;
   kernelNames: Record<KernelId, string>;
@@ -29,6 +30,8 @@ export const cnnMechanicsContent: LocalizedContent<CnnMechanicsContent> = {
     labels: {
       title: "CNN Mechanics Lab",
       canvasLabel: "Drawing canvas",
+      canvasKeyboardInstructions:
+        "Use the arrow keys to move the brush cursor, and Enter or Space to paint the highlighted cell.",
       clearButton: "Clear",
       kernelLabel: "Kernel",
       kernelNames: {
@@ -54,6 +57,8 @@ export const cnnMechanicsContent: LocalizedContent<CnnMechanicsContent> = {
     labels: {
       title: "CNN 연산 원리 랩",
       canvasLabel: "그림 그리기 캔버스",
+      canvasKeyboardInstructions:
+        "방향키로 브러시 커서를 이동하고, Enter 또는 Space 키로 강조된 칸을 칠할 수 있습니다.",
       clearButton: "지우기",
       kernelLabel: "커널",
       kernelNames: {

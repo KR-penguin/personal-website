@@ -85,7 +85,7 @@ export function FastInverseSqrtLab({ locale }: FastInverseSqrtLabProps) {
               onClick={() => setIterations(count)}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 iterations === count
-                  ? "bg-cosmos-accent text-cosmos-text"
+                  ? "bg-cosmos-accent text-cosmos-background"
                   : "border border-white/10 bg-cosmos-background text-cosmos-text-muted hover:text-cosmos-text"
               }`}
             >

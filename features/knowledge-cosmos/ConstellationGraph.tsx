@@ -1,11 +1,11 @@
 "use client";
 
 import type { KnowledgeCosmosConcept } from "@/types/content";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { useConstellationGraph } from "./useConstellationGraph";
 
 interface ConstellationGraphProps {
   concepts: KnowledgeCosmosConcept[];
-  ariaLabel: string;
 }
 
 const VIEW_WIDTH = 800;
@@ -21,19 +21,17 @@ function toSvgY(y: number): number {
   return PADDING_Y + y * (VIEW_HEIGHT - PADDING_Y * 2);
 }
 
-export function ConstellationGraph({ concepts, ariaLabel }: ConstellationGraphProps) {
+export function ConstellationGraph({ concepts }: ConstellationGraphProps) {
   const { nodes, selectedConcept, highlightedPrerequisiteIds, selectNode } =
     useConstellationGraph(concepts);
   const positionById = new Map(nodes.map((node) => [node.id, node]));
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-cosmos-surface p-6">
-      <svg
-        viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
-        role="img"
-        aria-label={ariaLabel}
-        className="h-auto w-full"
-      >
+    <ScrollReveal className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-cosmos-surface p-6">
+      {/* No role/aria-label here: nesting keyboard-focusable g[role=button]
+          nodes inside role="img" is an ARIA anti-pattern, and the section's
+          own heading already names this graphic. */}
+      <svg viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`} className="h-auto w-full">
         {nodes.flatMap((node) =>
           node.concept.prerequisiteIds.map((prerequisiteId) => {
             const prerequisiteNode = positionById.get(prerequisiteId);
@@ -45,6 +43,7 @@ export function ConstellationGraph({ concepts, ariaLabel }: ConstellationGraphPr
             return (
               <line
                 key={`${node.id}-${prerequisiteId}`}
+                aria-hidden="true"
                 x1={toSvgX(node.x)}
                 y1={toSvgY(node.y)}
                 x2={toSvgX(prerequisiteNode.x)}
@@ -72,13 +71,17 @@ export function ConstellationGraph({ concepts, ariaLabel }: ConstellationGraphPr
                   selectNode(node.id);
                 }
               }}
-              className="cursor-pointer focus:outline-none"
+              className="cursor-pointer focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cosmos-accent-secondary"
             >
               <circle
                 cx={toSvgX(node.x)}
                 cy={toSvgY(node.y)}
                 r={isSelected ? 10 : 7}
-                className={isSelected ? "fill-cosmos-accent" : "fill-cosmos-accent-secondary"}
+                className={`transition-[fill,r] duration-150 ${
+                  isSelected
+                    ? "fill-cosmos-accent"
+                    : "fill-cosmos-accent-secondary hover:fill-cosmos-accent-secondary/80"
+                }`}
               />
               <text
                 x={toSvgX(node.x)}
@@ -96,6 +99,7 @@ export function ConstellationGraph({ concepts, ariaLabel }: ConstellationGraphPr
       {selectedConcept && (
         <div
           role="note"
+          aria-live="polite"
           data-testid="concept-explanation"
           className="rounded-xl border border-white/10 bg-cosmos-background p-4"
         >
@@ -105,6 +109,6 @@ export function ConstellationGraph({ concepts, ariaLabel }: ConstellationGraphPr
           <p className="mt-2 text-sm text-cosmos-text-muted">{selectedConcept.explanation}</p>
         </div>
       )}
-    </div>
+    </ScrollReveal>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import type { AppLocale } from "@/i18n/routing";
 import { pickLocale } from "@/lib/content";
 import { cnnMechanicsContent } from "@/content/techLab/cnnMechanics";
@@ -17,11 +17,13 @@ interface CnnMechanicsLabProps {
 const STRIDE_OPTIONS: StrideOption[] = [1, 2];
 const PADDING_OPTIONS: PaddingOption[] = [0, 1];
 const POOL_SIZE_OPTIONS: PoolSizeOption[] = [2, 3];
+const CANVAS_INSTRUCTIONS_ID = "cnn-canvas-instructions";
+const CURSOR_OUTLINE_COLOR_FALLBACK = "#38bdf8";
 
 function toggleButtonClass(active: boolean): string {
   return `rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
     active
-      ? "bg-cosmos-accent text-cosmos-text"
+      ? "bg-cosmos-accent text-cosmos-background"
       : "border border-white/10 bg-cosmos-background text-cosmos-text-muted hover:text-cosmos-text"
   }`;
 }
@@ -29,6 +31,7 @@ function toggleButtonClass(active: boolean): string {
 export function CnnMechanicsLab({ locale }: CnnMechanicsLabProps) {
   const { caption, labels } = pickLocale(cnnMechanicsContent, locale);
   const {
+    resolution,
     kernelIds,
     pixels,
     kernelId,
@@ -44,17 +47,39 @@ export function CnnMechanicsLab({ locale }: CnnMechanicsLabProps) {
     setPadding,
     setPoolSize,
     paintAtPointer,
+    paintAtCell,
     clear,
   } = useCnnMechanicsLab();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isDrawingRef = useRef(false);
 
+  // Keyboard-driven brush cursor: lets a keyboard-only user move to and
+  // paint any cell without a pointer, mirroring paintAtPointer's cell math.
+  const [cursor, setCursor] = useState(() => ({
+    row: Math.floor(resolution / 2),
+    col: Math.floor(resolution / 2),
+  }));
+  const [isCanvasFocused, setIsCanvasFocused] = useState(false);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     renderGridToCanvas(canvas, pixels);
-  }, [pixels]);
+
+    if (!isCanvasFocused) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const outlineColor =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-cosmos-accent-secondary")
+        .trim() || CURSOR_OUTLINE_COLOR_FALLBACK;
+    ctx.save();
+    ctx.strokeStyle = outlineColor;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(cursor.col, cursor.row, 1, 1);
+    ctx.restore();
+  }, [pixels, cursor, isCanvasFocused]);
 
   const paintFromEvent = (event: ReactPointerEvent<HTMLCanvasElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -77,6 +102,41 @@ export function CnnMechanicsLab({ locale }: CnnMechanicsLabProps) {
     isDrawingRef.current = false;
   };
 
+  const moveCursor = (deltaRow: number, deltaCol: number) => {
+    setCursor((current) => ({
+      row: Math.min(resolution - 1, Math.max(0, current.row + deltaRow)),
+      col: Math.min(resolution - 1, Math.max(0, current.col + deltaCol)),
+    }));
+  };
+
+  const handleCanvasKeyDown = (event: ReactKeyboardEvent<HTMLCanvasElement>) => {
+    switch (event.key) {
+      case "ArrowUp":
+        event.preventDefault();
+        moveCursor(-1, 0);
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        moveCursor(1, 0);
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        moveCursor(0, -1);
+        break;
+      case "ArrowRight":
+        event.preventDefault();
+        moveCursor(0, 1);
+        break;
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        paintAtCell(cursor.row, cursor.col);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-cosmos-surface p-6">
       <header className="flex flex-col gap-2">
@@ -87,18 +147,26 @@ export function CnnMechanicsLab({ locale }: CnnMechanicsLabProps) {
       <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
         <canvas
           ref={canvasRef}
+          tabIndex={0}
           aria-label={labels.canvasLabel}
+          aria-describedby={CANVAS_INSTRUCTIONS_ID}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopDrawing}
           onPointerLeave={stopDrawing}
           onPointerCancel={stopDrawing}
-          className="h-40 w-40 touch-none rounded border border-white/10 bg-black [image-rendering:pixelated] cursor-crosshair sm:h-48 sm:w-48"
+          onKeyDown={handleCanvasKeyDown}
+          onFocus={() => setIsCanvasFocused(true)}
+          onBlur={() => setIsCanvasFocused(false)}
+          className="h-40 w-40 touch-none rounded border border-white/10 bg-black [image-rendering:pixelated] cursor-crosshair focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cosmos-accent-secondary sm:h-48 sm:w-48"
         />
+        <p id={CANVAS_INSTRUCTIONS_ID} className="sr-only">
+          {labels.canvasKeyboardInstructions}
+        </p>
         <button
           type="button"
           onClick={clear}
-          className="rounded-full border border-white/10 bg-cosmos-background px-4 py-2 text-sm font-medium text-cosmos-text-muted hover:text-cosmos-text"
+          className="rounded-full border border-white/10 bg-cosmos-background px-4 py-2 text-sm font-medium text-cosmos-text-muted transition-colors hover:text-cosmos-text"
         >
           {labels.clearButton}
         </button>

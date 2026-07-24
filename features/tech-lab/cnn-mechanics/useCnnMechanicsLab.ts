@@ -50,6 +50,7 @@ export interface UseCnnMechanicsLabResult {
   setPadding: (value: PaddingOption) => void;
   setPoolSize: (value: PoolSizeOption) => void;
   paintAtPointer: (clientX: number, clientY: number, rect: PointerRect) => void;
+  paintAtCell: (row: number, col: number) => void;
   clear: () => void;
 }
 
@@ -76,6 +77,13 @@ export function useCnnMechanicsLab(
     },
     [resolution]
   );
+
+  // Keyboard-operable equivalent of paintAtPointer: paints directly at a
+  // known (row, col) cell, e.g. the keyboard-driven cursor position, without
+  // needing a pointer event or bounding rect.
+  const paintAtCell = useCallback((row: number, col: number) => {
+    setPixels((prev) => paintDab(prev, row, col, BRUSH_RADIUS));
+  }, []);
 
   const clear = useCallback(() => {
     setPixels(createEmptyGrid(resolution));
@@ -133,6 +141,7 @@ export function useCnnMechanicsLab(
     setPadding,
     setPoolSize,
     paintAtPointer,
+    paintAtCell,
     clear,
   };
 }

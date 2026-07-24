@@ -29,6 +29,7 @@
   "nav": {
     "home": "히어로",
     "ariaLabel": "사이트 내비게이션",
-    "summaryToggle": "요약 모드"
+    "summaryToggle": "요약 모드",
+    "skipToContent": "본문으로 건너뛰기"
   }
 }

@@ -60,4 +60,45 @@ describe("CnnMechanicsLab", () => {
 
     expect(convStage.getAttribute("data-signature")).not.toBe(initialSignature);
   });
+
+  it("is keyboard-operable: the canvas is focusable and Enter paints the cell under the virtual cursor", () => {
+    mockMatchMedia(false);
+    render(<CnnMechanicsLab locale="en" />);
+
+    const { labels } = cnnMechanicsContent.en;
+    const canvas = screen.getByLabelText(labels.canvasLabel);
+
+    expect(canvas).toHaveAttribute("tabIndex", "0");
+    expect(canvas).toHaveAttribute("aria-describedby");
+    const describedById = canvas.getAttribute("aria-describedby");
+    expect(document.getElementById(describedById!)).toHaveTextContent(
+      labels.canvasKeyboardInstructions
+    );
+
+    const inputStage = screen.getByTestId("cnn-stage-input");
+    const initialSignature = inputStage.getAttribute("data-signature");
+
+    canvas.focus();
+    fireEvent.keyDown(canvas, { key: "ArrowRight" });
+    fireEvent.keyDown(canvas, { key: "Enter" });
+
+    expect(inputStage.getAttribute("data-signature")).not.toBe(initialSignature);
+  });
+
+  it("moves the keyboard cursor with arrow keys and paints with Space too", () => {
+    mockMatchMedia(false);
+    render(<CnnMechanicsLab locale="en" />);
+
+    const { labels } = cnnMechanicsContent.en;
+    const canvas = screen.getByLabelText(labels.canvasLabel);
+    const inputStage = screen.getByTestId("cnn-stage-input");
+    const initialSignature = inputStage.getAttribute("data-signature");
+
+    canvas.focus();
+    fireEvent.keyDown(canvas, { key: "ArrowDown" });
+    fireEvent.keyDown(canvas, { key: "ArrowLeft" });
+    fireEvent.keyDown(canvas, { key: " " });
+
+    expect(inputStage.getAttribute("data-signature")).not.toBe(initialSignature);
+  });
 });

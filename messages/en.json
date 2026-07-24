@@ -29,6 +29,7 @@
   "nav": {
     "home": "Hero",
     "ariaLabel": "Site navigation",
-    "summaryToggle": "Summary Mode"
+    "summaryToggle": "Summary Mode",
+    "skipToContent": "Skip to content"
   }
 }

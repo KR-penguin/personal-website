@@ -77,7 +77,7 @@ export function QLearningLab({ locale }: QLearningLabProps) {
           type="button"
           onClick={train}
           disabled={controlsDisabled}
-          className="rounded-full bg-cosmos-accent px-4 py-2 text-sm font-medium text-cosmos-text disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full bg-cosmos-accent px-4 py-2 text-sm font-medium text-cosmos-background transition-colors hover:bg-cosmos-accent-secondary disabled:cursor-not-allowed disabled:opacity-50"
         >
           {labels.trainButton}
         </button>
@@ -85,7 +85,7 @@ export function QLearningLab({ locale }: QLearningLabProps) {
           type="button"
           onClick={playGreedy}
           disabled={controlsDisabled || episodesCompleted === 0}
-          className="rounded-full border border-white/10 bg-cosmos-background px-4 py-2 text-sm font-medium text-cosmos-text disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full border border-white/10 bg-cosmos-background px-4 py-2 text-sm font-medium text-cosmos-text transition-colors hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {labels.playGreedyButton}
         </button>
