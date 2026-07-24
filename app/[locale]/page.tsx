@@ -1,5 +1,10 @@
+import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { HeroSection } from "@/features/hero/HeroSection";
+import { FounderStoryView } from "@/features/founder-story/FounderStoryView";
+import { CareerTimelineView } from "@/features/career-timeline/CareerTimelineView";
+import { PhilosophySection } from "@/features/philosophy/PhilosophySection";
+import { ContactSection } from "@/features/contact/ContactSection";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -14,5 +19,15 @@ export default async function LocaleHomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <HeroSection />;
+  const appLocale = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
+
+  return (
+    <>
+      <HeroSection locale={appLocale} />
+      <FounderStoryView locale={appLocale} />
+      <CareerTimelineView locale={appLocale} />
+      <PhilosophySection locale={appLocale} />
+      <ContactSection locale={appLocale} />
+    </>
+  );
 }

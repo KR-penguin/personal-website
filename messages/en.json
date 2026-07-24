@@ -2,7 +2,18 @@
   "site": {
     "title": "Sean Channie Quinn"
   },
-  "hero": {
-    "tagline": "Founder & engineer who rebuilds theory from first principles."
+  "founderStory": {
+    "heading": "Founder Story"
+  },
+  "careerTimeline": {
+    "heading": "Career Timeline"
+  },
+  "philosophy": {
+    "heading": "Philosophy",
+    "subheading": "The Sandcastle Protocol"
+  },
+  "contact": {
+    "heading": "Contact",
+    "emailButton": "Email me"
   }
 }
