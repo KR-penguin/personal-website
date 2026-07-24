@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useEffectiveReducedMotion } from "@/hooks/useEffectiveReducedMotion";
 
 interface PrincipleCardProps {
   title: string;
@@ -9,7 +9,7 @@ interface PrincipleCardProps {
 }
 
 export function PrincipleCard({ title, explanation }: PrincipleCardProps) {
-  const prefersReducedMotion = usePrefersReducedMotion();
+  const prefersReducedMotion = useEffectiveReducedMotion();
 
   const body = (
     <>

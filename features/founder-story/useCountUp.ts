@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useEffectiveReducedMotion } from "@/hooks/useEffectiveReducedMotion";
 
 const DEFAULT_DURATION_MS = 1500;
 
@@ -19,7 +19,7 @@ export function useCountUp(
   durationMs: number = DEFAULT_DURATION_MS
 ): UseCountUpResult {
   const ref = useRef<HTMLDivElement | null>(null);
-  const reducedMotion = usePrefersReducedMotion();
+  const reducedMotion = useEffectiveReducedMotion();
   const [value, setValue] = useState(0);
   const hasStartedRef = useRef(false);
 
