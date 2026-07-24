@@ -2,6 +2,11 @@ import type { AppLocale } from "@/i18n/routing";
 
 export type LocalizedContent<T> = Record<AppLocale, T>;
 
+export interface HeroContent {
+  roleLine: string;
+  tagline: string;
+}
+
 export interface FounderStoryStat {
   id: "collaborators" | "teamSizeAvg" | "obtUsers";
   target: number;

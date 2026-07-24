@@ -23,7 +23,7 @@ export default async function LocaleHomePage({
 
   return (
     <>
-      <HeroSection />
+      <HeroSection locale={appLocale} />
       <FounderStoryView locale={appLocale} />
       <CareerTimelineView locale={appLocale} />
       <PhilosophySection locale={appLocale} />
