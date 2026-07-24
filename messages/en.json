@@ -12,6 +12,9 @@
     "heading": "Philosophy",
     "subheading": "The Sandcastle Protocol"
   },
+  "techLab": {
+    "heading": "Tech Lab"
+  },
   "contact": {
     "heading": "Contact",
     "emailButton": "Email me"
