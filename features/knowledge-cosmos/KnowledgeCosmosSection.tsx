@@ -6,6 +6,11 @@ import { ExpandableExperience } from "@/features/summary-mode/ExpandableExperien
 import { ConceptList } from "./ConceptList";
 import { ConstellationGraph } from "./ConstellationGraph";
 
+// Not code-split: next/dynamic with the default ssr:true gave no bundle-size
+// benefit here (still required for the initial server render) while
+// triggering an out-of-order-streaming reconciliation bug that left this
+// stuck on its loading fallback or rendered outside <main>.
+
 interface KnowledgeCosmosSectionProps {
   locale: AppLocale;
 }

@@ -7,6 +7,10 @@ export interface HeroContent {
   tagline: string;
 }
 
+export interface SeoContent {
+  description: string;
+}
+
 export interface FounderStoryStat {
   id: "collaborators" | "teamSizeAvg" | "obtUsers";
   target: number;

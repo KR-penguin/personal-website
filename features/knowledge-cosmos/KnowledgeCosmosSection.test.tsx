@@ -42,7 +42,7 @@ describe("KnowledgeCosmosSection", () => {
     render(ui);
 
     const firstConcept = knowledgeCosmosContent.en.concepts[0];
-    fireEvent.click(screen.getByRole("button", { name: firstConcept.title }));
+    fireEvent.click(await screen.findByRole("button", { name: firstConcept.title }));
 
     expect(screen.getByTestId("concept-explanation")).toHaveTextContent(firstConcept.explanation);
   });

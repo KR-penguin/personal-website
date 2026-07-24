@@ -29,6 +29,10 @@ describe("TechLabSection", () => {
     expect(screen.getByText(techLabIntroContent.en.intro)).toBeInTheDocument();
     expect(screen.getByText(fastInverseSqrtContent.en.labels.title)).toBeInTheDocument();
     expect(screen.getByText(qLearningContent.en.labels.title)).toBeInTheDocument();
-    expect(screen.getByText(cnnMechanicsContent.en.labels.title)).toBeInTheDocument();
+
+    // CnnMechanicsLab alone is next/dynamic-loaded (ssr:false, via
+    // CnnMechanicsLabClient), so its content only appears once the lazy
+    // import resolves.
+    expect(await screen.findByText(cnnMechanicsContent.en.labels.title)).toBeInTheDocument();
   });
 });
