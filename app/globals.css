@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cosmos-background: #05060f;
+  --color-cosmos-surface: #0b0e1e;
+  --color-cosmos-accent: #8b5cf6;
+  --color-cosmos-accent-secondary: #38bdf8;
+  --color-cosmos-text: #f5f5fa;
+  --color-cosmos-text-muted: #9ca3af;
+
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+}
