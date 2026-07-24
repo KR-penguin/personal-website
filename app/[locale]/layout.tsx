@@ -5,6 +5,8 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { routing } from "@/i18n/routing";
+import { Providers } from "@/app/providers";
+import { SiteNav } from "@/features/navigation/SiteNav";
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -53,7 +55,10 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="bg-cosmos-background font-body text-cosmos-text antialiased">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Providers>
+            <SiteNav />
+            {children}
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>
