@@ -31,8 +31,10 @@ describe("KnowledgeCosmosSection", () => {
 
     expect(screen.getByRole("button", { name: en.knowledgeCosmos.collapseConstellation })).toBeInTheDocument();
 
+    // ConstellationGraph is now next/dynamic-loaded, so its node text only
+    // appears once the lazy import resolves.
     for (const concept of knowledgeCosmosContent.en.concepts) {
-      expect(screen.getByText(concept.title)).toBeInTheDocument();
+      expect(await screen.findByText(concept.title)).toBeInTheDocument();
     }
   });
 
@@ -42,7 +44,7 @@ describe("KnowledgeCosmosSection", () => {
     render(ui);
 
     const firstConcept = knowledgeCosmosContent.en.concepts[0];
-    fireEvent.click(screen.getByRole("button", { name: firstConcept.title }));
+    fireEvent.click(await screen.findByRole("button", { name: firstConcept.title }));
 
     expect(screen.getByTestId("concept-explanation")).toHaveTextContent(firstConcept.explanation);
   });
