@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import en from "@/messages/en.json";
+import { mockMatchMedia } from "@/test/matchMedia";
 
 vi.mock("next-intl/server", () => ({
   getTranslations: async (namespace?: string) => {
@@ -14,6 +15,10 @@ import { careerTimelineContent } from "@/content/careerTimeline";
 
 describe("CareerTimelineView", () => {
   it("renders the hobby callout, a milestone, and the notable-moment callout without restating founder-story data", async () => {
+    // Reduced motion keeps the new ScrollReveal-wrapped items rendering
+    // statically, with no IntersectionObserver/rAF wiring required.
+    mockMatchMedia(true);
+
     const ui = await CareerTimelineView({ locale: "en" });
     render(ui);
 

@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { AppLocale } from "@/i18n/routing";
 import { founderStoryContent } from "@/content/founderStory";
 import { pickLocale } from "@/lib/content";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { StatCounter } from "./StatCounter";
 
 interface FounderStoryViewProps {
@@ -36,12 +37,17 @@ export async function FounderStoryView({ locale }: FounderStoryViewProps) {
 
         <ol className="flex flex-col gap-6 border-l border-cosmos-accent/30 pl-6">
           {content.timeline.map((entry, index) => (
-            <li key={`${entry.year}-${index}`} className="flex flex-col gap-1">
+            <ScrollReveal
+              key={`${entry.year}-${index}`}
+              as="li"
+              delay={index * 0.05}
+              className="flex flex-col gap-1"
+            >
               <span className="font-display text-sm font-semibold text-cosmos-accent-secondary">
                 {entry.year}
               </span>
               <span className="text-base text-cosmos-text">{entry.text}</span>
-            </li>
+            </ScrollReveal>
           ))}
         </ol>
 
