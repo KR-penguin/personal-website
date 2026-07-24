@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import en from "@/messages/en.json";
+import { mockMatchMedia } from "@/test/matchMedia";
 
 vi.mock("next-intl/server", () => ({
   getTranslations: async (namespace?: string) => {
@@ -13,7 +14,18 @@ import { KnowledgeCosmosSection } from "./KnowledgeCosmosSection";
 import { knowledgeCosmosContent } from "@/content/knowledgeCosmos";
 
 describe("KnowledgeCosmosSection", () => {
+  it("renders a permanent section heading independent of the expand/collapse state", async () => {
+    mockMatchMedia(true);
+    const ui = await KnowledgeCosmosSection({ locale: "en" });
+    render(ui);
+
+    expect(
+      screen.getByRole("heading", { level: 2, name: en.knowledgeCosmos.heading })
+    ).toBeInTheDocument();
+  });
+
   it("starts expanded (no summary-mode provider) and renders the heading, intro, and all concept titles as graph nodes", async () => {
+    mockMatchMedia(true);
     const ui = await KnowledgeCosmosSection({ locale: "en" });
     render(ui);
 
@@ -25,6 +37,7 @@ describe("KnowledgeCosmosSection", () => {
   });
 
   it("reveals a concept's explanation when its node is clicked", async () => {
+    mockMatchMedia(true);
     const ui = await KnowledgeCosmosSection({ locale: "en" });
     render(ui);
 

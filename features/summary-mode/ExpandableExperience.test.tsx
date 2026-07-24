@@ -1,9 +1,14 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { mockMatchMedia } from "@/test/matchMedia";
 import { SummaryModeProvider } from "@/hooks/useSummaryMode";
 import { ExpandableExperience } from "./ExpandableExperience";
 
 function renderWithSummaryMode(initialSummaryMode: boolean) {
+  // Reduced motion keeps the new ScrollReveal-wrapped header/toggle region
+  // rendering as a plain static div, matching this file's existing
+  // instant-conditional-mount assertions.
+  mockMatchMedia(true);
   window.localStorage.setItem("summaryMode", String(initialSummaryMode));
 
   return render(

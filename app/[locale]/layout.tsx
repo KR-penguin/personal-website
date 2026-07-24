@@ -7,7 +7,10 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { Providers } from "@/app/providers";
 import { SiteNav } from "@/features/navigation/SiteNav";
+import { SkipLink } from "@/features/navigation/SkipLink";
 import "../globals.css";
+
+const MAIN_CONTENT_ID = "main-content";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -50,10 +53,12 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: "nav" });
 
   return (
     <html lang={locale} className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="bg-cosmos-background font-body text-cosmos-text antialiased">
+        <SkipLink label={t("skipToContent")} targetId={MAIN_CONTENT_ID} />
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <SiteNav />

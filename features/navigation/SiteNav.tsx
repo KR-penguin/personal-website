@@ -47,7 +47,7 @@ export function SiteNav() {
               aria-current={activeId === link.id ? "true" : undefined}
               className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors sm:text-sm ${
                 activeId === link.id
-                  ? "bg-cosmos-accent text-cosmos-text"
+                  ? "bg-cosmos-accent text-cosmos-background"
                   : "text-cosmos-text-muted hover:text-cosmos-text"
               }`}
             >

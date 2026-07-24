@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import en from "@/messages/en.json";
+import { mockMatchMedia } from "@/test/matchMedia";
 
 vi.mock("next-intl/server", () => ({
   getTranslations: async (namespace?: string) => {
@@ -14,6 +15,7 @@ import { CONTACT_EMAIL } from "@/content/contact";
 
 describe("ContactSection", () => {
   it("renders an email link with the correct mailto href", async () => {
+    mockMatchMedia(true);
     const ui = await ContactSection({ locale: "en" });
     render(ui);
 

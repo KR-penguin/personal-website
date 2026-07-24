@@ -17,6 +17,10 @@ export async function KnowledgeCosmosSection({ locale }: KnowledgeCosmosSectionP
   return (
     <section id="knowledge-cosmos" className="w-full bg-cosmos-surface px-6 py-24 sm:px-10">
       <div className="mx-auto flex max-w-4xl flex-col gap-8">
+        <h2 className="font-display text-3xl font-semibold text-cosmos-text sm:text-4xl">
+          {t("heading")}
+        </h2>
+
         <ExpandableExperience
           title={t("heading")}
           caption={intro}
@@ -24,7 +28,7 @@ export async function KnowledgeCosmosSection({ locale }: KnowledgeCosmosSectionP
           collapseLabel={t("collapseConstellation")}
           collapsedContent={<ConceptList concepts={concepts} />}
         >
-          <ConstellationGraph concepts={concepts} ariaLabel={t("heading")} />
+          <ConstellationGraph concepts={concepts} />
         </ExpandableExperience>
       </div>
     </section>
