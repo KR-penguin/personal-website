@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { routing } from "@/i18n/routing";
@@ -27,8 +27,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "site" });
   return {
-    title: locale === "ko" ? "권승찬" : "Sean Channie Quinn",
+    title: t("title"),
   };
 }
 
