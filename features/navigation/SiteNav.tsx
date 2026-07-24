@@ -36,16 +36,16 @@ export function SiteNav() {
   return (
     <nav
       aria-label={t("nav.ariaLabel")}
-      className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-2 overflow-x-auto bg-cosmos-background/85 px-4 py-2 backdrop-blur sm:justify-center sm:gap-3"
+      className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-2 bg-cosmos-background/85 px-4 py-2 backdrop-blur sm:justify-center sm:gap-3"
     >
-      <ul className="flex items-center gap-1 sm:gap-2">
+      <ul className="flex items-center gap-1 overflow-x-auto sm:gap-2">
         {SECTION_LINKS.map((link) => (
           <li key={link.id}>
             <a
               href={`#${link.id}`}
               onClick={handleLinkClick(link.id)}
               aria-current={activeId === link.id ? "true" : undefined}
-              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors sm:text-sm ${
+              className={`whitespace-nowrap rounded-full px-2 py-1 text-xs font-medium transition-colors sm:px-3 sm:py-1.5 sm:text-sm ${
                 activeId === link.id
                   ? "bg-cosmos-accent text-cosmos-background"
                   : "text-cosmos-text-muted hover:text-cosmos-text"
@@ -61,7 +61,7 @@ export function SiteNav() {
         type="button"
         onClick={() => setSummaryMode(!summaryMode)}
         aria-pressed={summaryMode}
-        className={`whitespace-nowrap rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium transition-colors sm:text-sm ${
+        className={`flex-none whitespace-nowrap rounded-full border border-white/10 px-2 py-1 text-xs font-medium transition-colors sm:px-3 sm:py-1.5 sm:text-sm ${
           summaryMode
             ? "bg-cosmos-accent-secondary text-cosmos-background"
             : "bg-cosmos-background text-cosmos-text-muted hover:text-cosmos-text"

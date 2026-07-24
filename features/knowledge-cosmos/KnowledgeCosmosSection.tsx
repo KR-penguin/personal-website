@@ -1,18 +1,15 @@
 import { getTranslations } from "next-intl/server";
-import dynamic from "next/dynamic";
 import type { AppLocale } from "@/i18n/routing";
 import { pickLocale } from "@/lib/content";
 import { knowledgeCosmosContent } from "@/content/knowledgeCosmos";
 import { ExpandableExperience } from "@/features/summary-mode/ExpandableExperience";
-import { DemoLoadingFallback } from "@/components/DemoLoadingFallback";
 import { ConceptList } from "./ConceptList";
+import { ConstellationGraph } from "./ConstellationGraph";
 
-// Code-split: the SVG constellation is heavy and, under Summary Mode's
-// default-collapsed ExpandableExperience state, may never even mount.
-const ConstellationGraph = dynamic(
-  () => import("./ConstellationGraph").then((mod) => mod.ConstellationGraph),
-  { loading: () => <DemoLoadingFallback /> }
-);
+// Not code-split: next/dynamic with the default ssr:true gave no bundle-size
+// benefit here (still required for the initial server render) while
+// triggering an out-of-order-streaming reconciliation bug that left this
+// stuck on its loading fallback or rendered outside <main>.
 
 interface KnowledgeCosmosSectionProps {
   locale: AppLocale;

@@ -31,7 +31,10 @@ export function ConstellationGraph({ concepts }: ConstellationGraphProps) {
       {/* No role/aria-label here: nesting keyboard-focusable g[role=button]
           nodes inside role="img" is an ARIA anti-pattern, and the section's
           own heading already names this graphic. */}
-      <svg viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`} className="h-auto w-full">
+      {/* min-w keeps node labels/circles legible below ~640px by scrolling
+          instead of shrinking the whole coordinate system illegibly small. */}
+      <div className="overflow-x-auto">
+      <svg viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`} className="h-auto w-full min-w-[640px]">
         {nodes.flatMap((node) =>
           node.concept.prerequisiteIds.map((prerequisiteId) => {
             const prerequisiteNode = positionById.get(prerequisiteId);
@@ -95,6 +98,7 @@ export function ConstellationGraph({ concepts }: ConstellationGraphProps) {
           );
         })}
       </svg>
+      </div>
 
       {selectedConcept && (
         <div

@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import dynamic from "next/dynamic";
 import type { AppLocale } from "@/i18n/routing";
 import { pickLocale } from "@/lib/content";
 import { techLabIntroContent } from "@/content/techLab/intro";
@@ -7,16 +6,18 @@ import { fastInverseSqrtContent } from "@/content/techLab/fastInverseSqrt";
 import { qLearningContent } from "@/content/techLab/qLearning";
 import { cnnMechanicsContent } from "@/content/techLab/cnnMechanics";
 import { ExpandableExperience } from "@/features/summary-mode/ExpandableExperience";
-import { DemoLoadingFallback } from "@/components/DemoLoadingFallback";
 import { FastInverseSqrtLab } from "./fast-inverse-sqrt/FastInverseSqrtLab";
+import { QLearningLab } from "./q-learning/QLearningLab";
 import { CnnMechanicsLabClient } from "./cnn-mechanics/CnnMechanicsLabClient";
 
-// Code-split: these are the two heaviest demos and, under Summary Mode's
-// default-collapsed ExpandableExperience state, may never even mount.
-const QLearningLab = dynamic(
-  () => import("./q-learning/QLearningLab").then((mod) => mod.QLearningLab),
-  { loading: () => <DemoLoadingFallback /> }
-);
+// Only CnnMechanicsLab is code-split (see CnnMechanicsLabClient): it's the
+// only one of the three with a genuine ssr:false justification (canvas/DOM
+// APIs) and the only one that measurably shrinks the route's required JS.
+// QLearningLab and ConstellationGraph were previously wrapped in
+// next/dynamic with the default ssr:true, which gave no bundle-size benefit
+// (still required for the initial server render) while triggering an
+// out-of-order-streaming reconciliation bug that left them stuck on their
+// loading fallback or rendered outside <main> — reverted to plain imports.
 
 interface TechLabSectionProps {
   locale: AppLocale;
