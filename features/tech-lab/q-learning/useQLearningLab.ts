@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useEffectiveReducedMotion } from "@/hooks/useEffectiveReducedMotion";
 import {
   Q_LEARNING_CONFIG,
   START_STATE,
@@ -33,7 +33,7 @@ export interface UseQLearningLabResult {
 }
 
 export function useQLearningLab(): UseQLearningLabResult {
-  const reducedMotion = usePrefersReducedMotion();
+  const reducedMotion = useEffectiveReducedMotion();
 
   const qTableRef = useRef<QTable>(createQTable());
   const epsilonRef = useRef(Q_LEARNING_CONFIG.epsilonStart);

@@ -1,24 +1,33 @@
 "use client";
 
-import { useEffect, type RefObject } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { createStars, drawStarfield, stepStar } from "@/lib/starfield";
 import type { Star } from "@/types/starfield";
+import { useEffectiveReducedMotion } from "@/hooks/useEffectiveReducedMotion";
 
 const STAR_COUNT = 220;
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const DEFAULT_DT = 1 / 60;
+
+interface StarfieldRuntime {
+  start: () => void;
+  stop: () => void;
+}
 
 export function useStarfield(
   canvasRef: RefObject<HTMLCanvasElement | null>
 ): void {
+  const reducedMotion = useEffectiveReducedMotion();
+  const runtimeRef = useRef<StarfieldRuntime | null>(null);
+
+  // Set up the canvas, resize handling, and the render loop once per canvas
+  // mount. Starting/stopping the loop itself is driven by a separate effect
+  // below so toggling reduced motion doesn't recreate/reposition the stars.
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    const motionQuery = window.matchMedia(REDUCED_MOTION_QUERY);
 
     let width = 0;
     let height = 0;
@@ -51,40 +60,38 @@ export function useStarfield(
       frameId = requestAnimationFrame(tick);
     };
 
-    const startAnimation = () => {
+    const start = () => {
       if (frameId !== null) return;
       lastTimestamp = null;
       frameId = requestAnimationFrame(tick);
     };
 
-    const stopAnimation = () => {
+    const stop = () => {
       if (frameId === null) return;
       cancelAnimationFrame(frameId);
       frameId = null;
+      drawStarfield(ctx, stars, width, height);
     };
 
     resize();
     window.addEventListener("resize", resize);
-
-    if (!motionQuery.matches) {
-      startAnimation();
-    }
-
-    const handleMotionChange = (event: MediaQueryListEvent) => {
-      if (event.matches) {
-        stopAnimation();
-        drawStarfield(ctx, stars, width, height);
-      } else {
-        startAnimation();
-      }
-    };
-
-    motionQuery.addEventListener("change", handleMotionChange);
+    runtimeRef.current = { start, stop };
 
     return () => {
       window.removeEventListener("resize", resize);
-      motionQuery.removeEventListener("change", handleMotionChange);
-      stopAnimation();
+      if (frameId !== null) cancelAnimationFrame(frameId);
+      runtimeRef.current = null;
     };
   }, [canvasRef]);
+
+  useEffect(() => {
+    const runtime = runtimeRef.current;
+    if (!runtime) return;
+
+    if (reducedMotion) {
+      runtime.stop();
+    } else {
+      runtime.start();
+    }
+  }, [reducedMotion]);
 }

@@ -13,10 +13,22 @@
     "subheading": "The Sandcastle Protocol"
   },
   "techLab": {
-    "heading": "Tech Lab"
+    "heading": "Tech Lab",
+    "expandDemo": "Show interactive demo",
+    "collapseDemo": "Hide interactive demo"
+  },
+  "knowledgeCosmos": {
+    "heading": "Knowledge Cosmos",
+    "expandConstellation": "Show constellation",
+    "collapseConstellation": "Hide constellation"
   },
   "contact": {
     "heading": "Contact",
     "emailButton": "Email me"
+  },
+  "nav": {
+    "home": "Hero",
+    "ariaLabel": "Site navigation",
+    "summaryToggle": "Summary Mode"
   }
 }
