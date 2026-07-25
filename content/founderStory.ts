@@ -3,7 +3,7 @@ import type { FounderStoryContent, LocalizedContent } from "@/types/content";
 export const founderStoryContent: LocalizedContent<FounderStoryContent> = {
   en: {
     intro:
-      "Nine projects. 70–80 collaborators. A team that went from a handful of classmates to a mostly-international crew run in English. Here's the trajectory.",
+      "Nine projects. 70–80 collaborators. A team that went from a handful of classmates to a mostly-international crew run in English.",
     stats: [
       {
         id: "collaborators",
@@ -27,45 +27,72 @@ export const founderStoryContent: LocalizedContent<FounderStoryContent> = {
         label: "Open Beta users at launch",
       },
     ],
-    timeline: [
-      { year: "2020", text: "First collaboration begins — Project 1." },
-      { year: "2021", text: "Recruits additional members." },
-      { year: "2022", text: "Team becomes actively productive — Project 2." },
+    highlights: [
+      { id: "shark-tank", text: "Invited to appear on Shark Tank Korea." },
       {
-        year: "2023",
-        text: "Recruits members from the adult workforce for the first time — Projects 3 and 4.",
+        id: "yc-offer",
+        text: "Offered a six-figure-plus salary by a YC-affiliated matching service to join another startup — declined because it required relocating to the US immediately.",
       },
       {
-        year: "2024",
-        text: "Team grows to mostly adults; adopts Scrum and Jira — Project 5.",
+        id: "contract",
+        text: "Negotiated a $2,450 Unreal Engine 5 contract with a French influencer, entirely in English over a call.",
       },
       {
-        year: "2024",
-        text: "Disbands the team to focus on science-high-school entrance exams; builds a solo Unreal Engine 5 project using the Advanced Locomotion System — Project 6.",
+        id: "obt",
+        text: "Launched Project 8's Open Beta to 80 users, with strong reception and rapid iteration on feedback.",
+      },
+    ],
+    projects: [
+      {
+        id: "project-1",
+        period: "2020",
+        title: "Project 1",
+        description: "First collaborative project — the start of leading teams.",
       },
       {
-        year: "2024",
-        text: "Reforms the team with 3 members — Project 7. Programming runs on Scrum, Art/Sound runs on Kanban.",
+        id: "project-2",
+        period: "2022",
+        title: "Project 2",
+        description: "Team became actively productive.",
       },
       {
-        year: "2025",
-        text: "Goes global — recruits international teammates; the team becomes almost entirely non-Korean — Project 8. Switches from Jira to ClickUp.",
+        id: "project-3-4",
+        period: "2023",
+        title: "Projects 3–4",
+        description: "First projects with adult collaborators.",
       },
       {
-        year: "2026-02",
-        text: "Negotiates a $2,450 Unreal Engine 5 contract (70–80 hours of work) with a French influencer, entirely in English over a call — ultimately can't take it due to school and his own startup.",
+        id: "project-5",
+        period: "2024",
+        title: "Project 5",
+        description: "Mostly-adult team; adopted Scrum and Jira.",
       },
       {
-        year: "2026-06",
-        text: "A YC-affiliated matching service offers a six-figure-plus salary to join another startup — contingent on relocating to the US immediately. Declines.",
+        id: "project-6",
+        period: "2024",
+        title: "Project 6 — Solo",
+        description:
+          "A solo Unreal Engine 5 project using the Advanced Locomotion System, built while preparing for science-high-school entrance exams.",
       },
       {
-        year: "2026-07",
-        text: "Project 8 launches its Open Beta — 80 users at launch, strong reception, rapid iteration on user feedback. Also receives an invitation to appear on Shark Tank Korea.",
+        id: "project-7",
+        period: "2024",
+        title: "Project 7",
+        description: "Team reformed with 3 members — Scrum for programming, Kanban for art/sound.",
       },
       {
-        year: "2026 (ongoing)",
-        text: "Project 9's demo is complete and its Open Beta is in preparation — an AI education startup built around a Socratic AI tutor, hands-on 2D/3D manipulable concept components, exam-realistic quizzes (with a UX trick that grades free-response answers in the background while the user is still working through multiple-choice), a gamified 'Knowledge Cosmos' progress map, and a standalone LaTeX/Markdown workspace.",
+        id: "project-8",
+        period: "2025–2026",
+        title: "Project 8",
+        description: "Went global — an almost entirely international team, run in English.",
+      },
+      {
+        id: "project-9",
+        period: "2026 — current",
+        title: "Project 9",
+        description:
+          "An AI education startup: a Socratic AI tutor, hands-on 2D/3D concept components, exam-realistic quizzes, a gamified 'Knowledge Cosmos' progress map, and a standalone LaTeX/Markdown workspace. Demo complete, Open Beta in preparation.",
+        url: "https://npluslearnup.win",
       },
     ],
     processNote:
@@ -73,7 +100,7 @@ export const founderStoryContent: LocalizedContent<FounderStoryContent> = {
   },
   ko: {
     intro:
-      "9개의 프로젝트. 70~80명의 협업. 소수의 동급생으로 시작해 대부분 외국인으로 구성된, 영어로 운영되는 팀까지. 그 궤적입니다.",
+      "9개의 프로젝트. 70~80명의 협업. 소수의 동급생으로 시작해 대부분 외국인으로 구성된, 영어로 운영되는 팀까지.",
     stats: [
       {
         id: "collaborators",
@@ -97,42 +124,71 @@ export const founderStoryContent: LocalizedContent<FounderStoryContent> = {
         label: "OBT 출시 유저 수",
       },
     ],
-    timeline: [
-      { year: "2020", text: "협업 시작 — 첫 번째 프로젝트." },
-      { year: "2021", text: "멤버 추가 모집." },
-      { year: "2022", text: "활발히 활동 시작 — 두 번째 프로젝트." },
-      { year: "2023", text: "성인층 멤버 합류 — 세, 네 번째 프로젝트." },
+    highlights: [
+      { id: "shark-tank", text: "Shark Tank Korea 출연 제의를 받음." },
       {
-        year: "2024",
-        text: "대부분 성인층으로 구성; Scrum과 Jira 도입 — 다섯 번째 프로젝트.",
+        id: "yc-offer",
+        text: "YC matching service로부터 최소 6자리 연봉을 제안받음 — 미국 즉시 이주 조건이라 수락하지 않음.",
       },
       {
-        year: "2024",
-        text: "과학고 입시 준비를 위해 팀을 해체하고, UE5의 ALS를 활용한 개인 프로젝트 진행 — 여섯 번째 프로젝트.",
+        id: "contract",
+        text: "프랑스 인플루언서와 영어로 협상해 $2,450 규모의 UE5 외주 계약을 얻어냄.",
       },
       {
-        year: "2024",
-        text: "3명으로 팀 재결성 — 일곱 번째 프로젝트. Programming는 Scrum, Art/Sound는 Kanban으로 운영.",
+        id: "obt",
+        text: "여덟 번째 프로젝트 OBT를 유저 80명에게 출시 — 반응 좋음, 빠른 피드백 반영.",
+      },
+    ],
+    projects: [
+      {
+        id: "project-1",
+        period: "2020",
+        title: "프로젝트 1",
+        description: "첫 협업 프로젝트 — 팀을 이끄는 여정의 시작.",
       },
       {
-        year: "2025",
-        text: "글로벌 팀으로 전환 — 외국인 팀원 모집, 팀원 대부분이 외국인으로 구성 — 여덟 번째 프로젝트. Jira에서 ClickUp으로 전환.",
+        id: "project-2",
+        period: "2022",
+        title: "프로젝트 2",
+        description: "활발히 활동을 시작한 프로젝트.",
       },
       {
-        year: "2026-02",
-        text: "프랑스 인플루언서와 영어로 통화 협상해 UE5 작업(70~80시간) 대가로 $2,450 규모의 외주를 얻어냈으나, 학교와 자신의 사업 때문에 결국 진행하지 못함.",
+        id: "project-3-4",
+        period: "2023",
+        title: "프로젝트 3–4",
+        description: "성인 팀원과 함께한 첫 프로젝트들.",
       },
       {
-        year: "2026-06",
-        text: "YC matching service에서 합류 시 최소 6자리 이상의 연봉을 제안받음 — 미국 즉시 이주가 조건이라 수락하지 못함.",
+        id: "project-5",
+        period: "2024",
+        title: "프로젝트 5",
+        description: "대부분 성인으로 구성된 팀; Scrum과 Jira 도입.",
       },
       {
-        year: "2026-07",
-        text: "여덟 번째 프로젝트 OBT 출시 — 유저 80명, 반응 좋음, 피드백을 받아 빠르게 개선 중. Shark Tank Korea로부터 출연 제의도 받음.",
+        id: "project-6",
+        period: "2024",
+        title: "프로젝트 6 — 개인",
+        description: "과학고 입시 준비 중 진행한 UE5 ALS 기반 개인 프로젝트.",
       },
       {
-        year: "2026 (ongoing)",
-        text: "아홉 번째 프로젝트, demo 개발 완료 및 OBT 준비 중 — 소크라테스식 AI 튜터, 직접 조작 가능한 2D/3D 개념 컴포넌트, 현실 시험 난이도의 정밀 퀴즈(서술형을 미리 채점해 채점 대기시간을 없애는 UX), 게임화된 '지식 우주' 진행 맵, LaTeX/마크다운 독립형 노트 워크스테이션을 갖춘 AI 교육 스타트업.",
+        id: "project-7",
+        period: "2024",
+        title: "프로젝트 7",
+        description: "3명으로 재결성한 팀 — 프로그래밍은 Scrum, 아트/사운드는 Kanban.",
+      },
+      {
+        id: "project-8",
+        period: "2025~2026",
+        title: "프로젝트 8",
+        description: "글로벌 팀으로 전환 — 거의 전원 외국인, 영어로 운영.",
+      },
+      {
+        id: "project-9",
+        period: "2026 — 현재",
+        title: "프로젝트 9",
+        description:
+          "AI 교육 스타트업: 소크라테스식 AI 튜터, 직접 조작 가능한 2D/3D 개념 컴포넌트, 현실 시험 난이도의 정밀 퀴즈, 게임화된 '지식 우주' 진행 맵, LaTeX/마크다운 워크스페이스. Demo 개발 완료, OBT 준비 중.",
+        url: "https://npluslearnup.win",
       },
     ],
     processNote:

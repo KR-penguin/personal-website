@@ -19,60 +19,48 @@ export interface FounderStoryStat {
   label: string;
 }
 
-export interface FounderStoryTimelineEntry {
-  year: string;
+export interface FounderStoryHighlight {
+  id: string;
   text: string;
+}
+
+export interface FounderStoryProject {
+  id: string;
+  period: string;
+  title: string;
+  description: string;
+  url?: string;
 }
 
 export interface FounderStoryContent {
   intro: string;
   stats: FounderStoryStat[];
-  timeline: FounderStoryTimelineEntry[];
+  highlights: FounderStoryHighlight[];
+  projects: FounderStoryProject[];
   processNote: string;
 }
 
-export interface CareerMilestone {
-  year: string;
-  text: string;
-}
-
-export interface DeepDiveTeaser {
-  id: "float" | "quake" | "ml";
-  text: string;
-}
-
-export interface CareerTimelineContent {
-  milestones: CareerMilestone[];
-  hobbyCallout: string;
-  mathCallout: string;
-  deepDiveTeasers: DeepDiveTeaser[];
-  notableMoment: string;
-}
-
-export interface SandcastlePrinciple {
+export interface TechStackCategory {
   id: string;
   title: string;
-  explanation: string;
+  items: string[];
 }
 
-export interface PhilosophyContent {
-  originStory: string;
-  worldview: string;
-  principles: SandcastlePrinciple[];
+export interface Achievement {
+  id: "float" | "quake" | "ml";
+  title: string;
+  text: string;
+}
+
+export interface TechStackContent {
+  categories: TechStackCategory[];
+  achievements: Achievement[];
+  hobbyCallout: string;
+  mathCallout: string;
 }
 
 export interface ContactContent {
   cta: string;
-}
-
-export interface KnowledgeCosmosConcept {
-  id: string;
-  title: string;
-  explanation: string;
-  prerequisiteIds: string[];
-}
-
-export interface KnowledgeCosmosContent {
-  intro: string;
-  concepts: KnowledgeCosmosConcept[];
+  copyLabel: string;
+  copiedLabel: string;
 }

@@ -22,15 +22,13 @@ describe("SiteNav", () => {
     mockMatchMedia(false);
   });
 
-  it("renders a nav link for all 7 sections and the summary-mode toggle", () => {
+  it("renders a nav link for all 5 sections and the summary-mode toggle", () => {
     renderSiteNav();
 
     expect(screen.getByText(en.nav.home)).toBeInTheDocument();
     expect(screen.getByText(en.founderStory.heading)).toBeInTheDocument();
-    expect(screen.getByText(en.careerTimeline.heading)).toBeInTheDocument();
+    expect(screen.getByText(en.techStack.heading)).toBeInTheDocument();
     expect(screen.getByText(en.techLab.heading)).toBeInTheDocument();
-    expect(screen.getByText(en.knowledgeCosmos.heading)).toBeInTheDocument();
-    expect(screen.getByText(en.philosophy.heading)).toBeInTheDocument();
     expect(screen.getByText(en.contact.heading)).toBeInTheDocument();
 
     expect(screen.getByRole("button", { name: en.nav.summaryToggle })).toBeInTheDocument();

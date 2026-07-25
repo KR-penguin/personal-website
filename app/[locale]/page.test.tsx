@@ -17,17 +17,11 @@ vi.mock("@/features/hero/HeroSection", () => ({
 vi.mock("@/features/founder-story/FounderStoryView", () => ({
   FounderStoryView: () => <div>Founder stub</div>,
 }));
-vi.mock("@/features/career-timeline/CareerTimelineView", () => ({
-  CareerTimelineView: () => <div>Career stub</div>,
+vi.mock("@/features/tech-stack/TechStackSection", () => ({
+  TechStackSection: () => <div>Tech Stack stub</div>,
 }));
 vi.mock("@/features/tech-lab/TechLabSection", () => ({
   TechLabSection: () => <div>Tech Lab stub</div>,
-}));
-vi.mock("@/features/knowledge-cosmos/KnowledgeCosmosSection", () => ({
-  KnowledgeCosmosSection: () => <div>Knowledge Cosmos stub</div>,
-}));
-vi.mock("@/features/philosophy/PhilosophySection", () => ({
-  PhilosophySection: () => <div>Philosophy stub</div>,
 }));
 vi.mock("@/features/contact/ContactSection", () => ({
   ContactSection: () => <div>Contact stub</div>,

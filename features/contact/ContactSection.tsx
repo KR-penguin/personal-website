@@ -3,6 +3,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { CONTACT_EMAIL, contactContent } from "@/content/contact";
 import { pickLocale } from "@/lib/content";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { CopyEmailButton } from "./CopyEmailButton";
 
 interface ContactSectionProps {
   locale: AppLocale;
@@ -19,12 +20,20 @@ export async function ContactSection({ locale }: ContactSectionProps) {
           {t("heading")}
         </h2>
         <p className="text-lg text-cosmos-text-muted">{content.cta}</p>
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          className="rounded-full bg-cosmos-accent px-8 py-3 font-display text-base font-semibold text-cosmos-background transition-colors hover:bg-cosmos-accent-secondary"
-        >
-          {t("emailButton")}
-        </a>
+        <p className="select-all font-display text-lg text-cosmos-text">{CONTACT_EMAIL}</p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="rounded-full bg-cosmos-accent px-8 py-3 font-display text-base font-semibold text-cosmos-background transition-colors hover:bg-cosmos-accent-secondary"
+          >
+            {t("emailButton")}
+          </a>
+          <CopyEmailButton
+            email={CONTACT_EMAIL}
+            copyLabel={content.copyLabel}
+            copiedLabel={content.copiedLabel}
+          />
+        </div>
       </ScrollReveal>
     </section>
   );

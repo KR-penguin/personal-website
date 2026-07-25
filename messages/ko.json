@@ -5,22 +5,14 @@
   "founderStory": {
     "heading": "파운더 스토리"
   },
-  "careerTimeline": {
-    "heading": "커리어 타임라인"
-  },
-  "philosophy": {
-    "heading": "철학",
-    "subheading": "샌드캐슬 프로토콜"
+  "techStack": {
+    "heading": "기술 스택",
+    "achievementsHeading": "성과"
   },
   "techLab": {
     "heading": "기술 시험장",
     "expandDemo": "인터랙티브 데모 보기",
     "collapseDemo": "인터랙티브 데모 숨기기"
-  },
-  "knowledgeCosmos": {
-    "heading": "지식 우주",
-    "expandConstellation": "별자리 보기",
-    "collapseConstellation": "별자리 숨기기"
   },
   "contact": {
     "heading": "연락하기",

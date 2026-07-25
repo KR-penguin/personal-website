@@ -5,22 +5,14 @@
   "founderStory": {
     "heading": "Founder Story"
   },
-  "careerTimeline": {
-    "heading": "Career Timeline"
-  },
-  "philosophy": {
-    "heading": "Philosophy",
-    "subheading": "The Sandcastle Protocol"
+  "techStack": {
+    "heading": "Tech Stack",
+    "achievementsHeading": "Achievements"
   },
   "techLab": {
     "heading": "Tech Lab",
     "expandDemo": "Show interactive demo",
     "collapseDemo": "Hide interactive demo"
-  },
-  "knowledgeCosmos": {
-    "heading": "Knowledge Cosmos",
-    "expandConstellation": "Show constellation",
-    "collapseConstellation": "Hide constellation"
   },
   "contact": {
     "heading": "Contact",

@@ -39,11 +39,11 @@ describe("selectActiveSectionId", () => {
     const result = selectActiveSectionId(
       [
         { id: "hero", isIntersecting: false, intersectionRatio: 0 },
-        { id: "philosophy", isIntersecting: true, intersectionRatio: 0.5 },
+        { id: "contact", isIntersecting: true, intersectionRatio: 0.5 },
       ],
       "hero"
     );
 
-    expect(result).toBe("philosophy");
+    expect(result).toBe("contact");
   });
 });
