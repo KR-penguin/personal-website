@@ -6,17 +6,14 @@ import { useEffectiveReducedMotion } from "@/hooks/useEffectiveReducedMotion";
 import { useSummaryMode } from "@/hooks/useSummaryMode";
 import { useActiveSection } from "./useActiveSection";
 
-// Order matches the Orbit Map spec: Hero, Founder Story, Career Timeline,
-// Tech Lab, Knowledge Cosmos, Philosophy, Contact. Six of these reuse each
-// section's existing `*.heading` message key; only Hero needs a nav-specific
-// label since it has no heading key of its own.
+// Order: Hero, Founder Story, Tech Stack, Tech Lab, Contact. These reuse
+// each section's existing `*.heading` message key; only Hero needs a
+// nav-specific label since it has no heading key of its own.
 const SECTION_LINKS = [
   { id: "hero", messageKey: "nav.home" },
   { id: "founder-story", messageKey: "founderStory.heading" },
-  { id: "career-timeline", messageKey: "careerTimeline.heading" },
+  { id: "tech-stack", messageKey: "techStack.heading" },
   { id: "tech-lab", messageKey: "techLab.heading" },
-  { id: "knowledge-cosmos", messageKey: "knowledgeCosmos.heading" },
-  { id: "philosophy", messageKey: "philosophy.heading" },
   { id: "contact", messageKey: "contact.heading" },
 ] as const;
 
@@ -38,7 +35,7 @@ export function SiteNav() {
       aria-label={t("nav.ariaLabel")}
       className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-2 bg-cosmos-background/85 px-4 py-2 backdrop-blur sm:justify-center sm:gap-3"
     >
-      <ul className="flex items-center gap-1 overflow-x-auto sm:gap-2">
+      <ul className="scrollbar-hide flex items-center gap-1 overflow-x-auto sm:gap-2">
         {SECTION_LINKS.map((link) => (
           <li key={link.id}>
             <a

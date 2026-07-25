@@ -11,15 +11,19 @@ vi.mock("next-intl/server", () => ({
 }));
 
 import { ContactSection } from "./ContactSection";
-import { CONTACT_EMAIL } from "@/content/contact";
+import { CONTACT_EMAIL, contactContent } from "@/content/contact";
 
 describe("ContactSection", () => {
-  it("renders an email link with the correct mailto href", async () => {
+  it("renders an email link, the visible email address, and a copy button", async () => {
     mockMatchMedia(true);
     const ui = await ContactSection({ locale: "en" });
     render(ui);
 
     const link = screen.getByRole("link", { name: en.contact.emailButton });
     expect(link).toHaveAttribute("href", `mailto:${CONTACT_EMAIL}`);
+    expect(screen.getByText(CONTACT_EMAIL)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: contactContent.en.copyLabel })
+    ).toBeInTheDocument();
   });
 });

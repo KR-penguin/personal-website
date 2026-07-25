@@ -35,21 +35,45 @@ export async function FounderStoryView({ locale }: FounderStoryViewProps) {
           ))}
         </div>
 
-        <ol className="flex flex-col gap-6 border-l border-cosmos-accent/30 pl-6">
-          {content.timeline.map((entry, index) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {content.highlights.map((highlight, index) => (
             <ScrollReveal
-              key={`${entry.year}-${index}`}
-              as="li"
+              key={highlight.id}
               delay={index * 0.05}
-              className="flex flex-col gap-1"
+              className="rounded-xl border border-cosmos-accent/40 bg-cosmos-surface p-5 text-base font-medium text-cosmos-text"
             >
-              <span className="font-display text-sm font-semibold text-cosmos-accent-secondary">
-                {entry.year}
-              </span>
-              <span className="text-base text-cosmos-text">{entry.text}</span>
+              {highlight.text}
             </ScrollReveal>
           ))}
-        </ol>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {content.projects.map((project, index) => (
+            <ScrollReveal
+              key={project.id}
+              delay={index * 0.03}
+              className="flex flex-col gap-2 rounded-xl border border-white/10 bg-cosmos-surface p-5"
+            >
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="font-display text-base font-semibold text-cosmos-text">
+                  {project.title}
+                </span>
+                <span className="text-xs text-cosmos-text-muted">{project.period}</span>
+              </div>
+              <p className="text-sm text-cosmos-text-muted">{project.description}</p>
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-medium text-cosmos-accent-secondary transition-colors hover:text-cosmos-accent"
+                >
+                  {project.url.replace(/^https?:\/\//, "")}
+                </a>
+              )}
+            </ScrollReveal>
+          ))}
+        </div>
 
         <p className="rounded-xl border border-white/10 bg-cosmos-surface p-5 text-sm text-cosmos-text-muted">
           {content.processNote}

@@ -21,3 +21,14 @@ html {
 body {
   min-height: 100vh;
 }
+
+/* Keeps horizontally-scrollable strips (nav links, constellation-style
+   widgets) usable without a visible scrollbar cluttering the dark UI. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

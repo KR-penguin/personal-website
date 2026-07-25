@@ -14,10 +14,9 @@ import { TechLabSection } from "./TechLabSection";
 import { techLabIntroContent } from "@/content/techLab/intro";
 import { fastInverseSqrtContent } from "@/content/techLab/fastInverseSqrt";
 import { qLearningContent } from "@/content/techLab/qLearning";
-import { cnnMechanicsContent } from "@/content/techLab/cnnMechanics";
 
 describe("TechLabSection", () => {
-  it("renders the section heading, intro, and all three demo labs", async () => {
+  it("renders the section heading, intro, and both demo labs", async () => {
     // Reduced motion keeps the client demo hooks (rAF training loop, greedy
     // playback timers) from ever kicking off during this smoke test.
     mockMatchMedia(true);
@@ -29,10 +28,5 @@ describe("TechLabSection", () => {
     expect(screen.getByText(techLabIntroContent.en.intro)).toBeInTheDocument();
     expect(screen.getByText(fastInverseSqrtContent.en.labels.title)).toBeInTheDocument();
     expect(screen.getByText(qLearningContent.en.labels.title)).toBeInTheDocument();
-
-    // CnnMechanicsLab alone is next/dynamic-loaded (ssr:false, via
-    // CnnMechanicsLabClient), so its content only appears once the lazy
-    // import resolves.
-    expect(await screen.findByText(cnnMechanicsContent.en.labels.title)).toBeInTheDocument();
   });
 });
