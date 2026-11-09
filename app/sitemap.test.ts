@@ -1,25 +1,29 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import sitemap from "./sitemap";
 
-describe("sitemap", () => {
-  it("lists the root and both locale home pages", () => {
-    const entries = sitemap();
-    const urls = entries.map((entry) => entry.url);
+const SITE = "https://example.test/site";
 
-    expect(urls).toEqual([
-      "http://localhost:3000",
-      "http://localhost:3000/en",
-      "http://localhost:3000/ko",
-    ]);
+beforeEach(() => {
+  vi.stubEnv("NEXT_PUBLIC_SITE_URL", SITE);
+});
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
+
+describe("sitemap", () => {
+  it("lists the root and both locale home pages at their trailing-slash URLs", () => {
+    const urls = sitemap().map((entry) => entry.url);
+
+    expect(urls).toEqual([`${SITE}/`, `${SITE}/en/`, `${SITE}/ko/`]);
   });
 
-  it("cross-links each entry's hreflang alternates to both locales", () => {
-    const entries = sitemap();
-
-    for (const entry of entries) {
-      expect(entry.alternates?.languages).toMatchObject({
-        en: "http://localhost:3000/en",
-        ko: "http://localhost:3000/ko",
+  it("cross-links each entry to both locales, with the language-picking root as x-default", () => {
+    for (const entry of sitemap()) {
+      expect(entry.alternates?.languages).toEqual({
+        en: `${SITE}/en/`,
+        ko: `${SITE}/ko/`,
+        "x-default": `${SITE}/`,
       });
     }
   });

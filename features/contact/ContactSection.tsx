@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import type { AppLocale } from "@/i18n/routing";
+import { SpacedText } from "@/components/typography/SpacedText";
 import { CONTACT_EMAIL, contactContent } from "@/content/contact";
 import { pickLocale } from "@/lib/content";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { CopyEmailButton } from "./CopyEmailButton";
 
 interface ContactSectionProps {
@@ -14,27 +14,44 @@ export async function ContactSection({ locale }: ContactSectionProps) {
   const content = pickLocale(contactContent, locale);
 
   return (
-    <section id="contact" className="w-full bg-cosmos-surface px-6 py-24 sm:px-10">
-      <ScrollReveal className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-        <h2 className="font-display text-3xl font-semibold text-cosmos-text sm:text-4xl">
+    // The default accent focus ring would vanish on the accent background.
+    <section
+      id="contact"
+      className="border-t-2 border-ink bg-accent text-on-accent [&_:focus-visible]:outline-on-accent"
+    >
+      <div className="flex justify-between gap-4 px-6 pt-8 text-xs font-extrabold tracking-[.5em]">
+        <span>
+          <SpacedText>{t("kicker")}</SpacedText>
+        </span>
+        <span aria-hidden="true">04</span>
+      </div>
+      <div className="overflow-hidden py-6">
+        <h2 className="px-6 text-[clamp(72px,14vw,240px)] leading-[.92] font-black tracking-[-0.05em]">
           {t("heading")}
         </h2>
-        <p className="text-lg text-cosmos-text-muted">{content.cta}</p>
-        <p className="select-all font-display text-lg text-cosmos-text">{CONTACT_EMAIL}</p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
+      </div>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] border-t-2 border-on-accent">
+        <div className="flex flex-col gap-4 border-r-2 border-on-accent p-6">
+          <p className="text-[clamp(20px,2vw,28px)] leading-[1.3] font-bold text-pretty">
+            {content.cta}
+          </p>
+        </div>
+        <div className="flex flex-col gap-6 p-6">
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="rounded-full bg-cosmos-accent px-8 py-3 font-display text-base font-semibold text-cosmos-background transition-colors hover:bg-cosmos-accent-secondary"
+            className="font-display text-[clamp(24px,3vw,44px)] leading-none font-extrabold tracking-[-0.02em] break-all underline decoration-[3px] underline-offset-8 select-all font-stretch-110%"
           >
-            {t("emailButton")}
+            {CONTACT_EMAIL}
           </a>
-          <CopyEmailButton
-            email={CONTACT_EMAIL}
-            copyLabel={content.copyLabel}
-            copiedLabel={content.copiedLabel}
-          />
+          <div className="flex">
+            <CopyEmailButton
+              email={CONTACT_EMAIL}
+              copyLabel={content.copyLabel}
+              copiedLabel={content.copiedLabel}
+            />
+          </div>
         </div>
-      </ScrollReveal>
+      </div>
     </section>
   );
 }

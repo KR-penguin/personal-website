@@ -1,27 +1,31 @@
 {
   "site": {
-    "title": "Sean Channie Quinn"
+    "title": "Sean Quinn"
+  },
+  "hero": {
+    "lineOne": "Founder",
+    "lineTwo": "Engineer"
   },
   "founderStory": {
-    "heading": "Founder Story"
+    "heading": "Founder Story",
+    "statsLabel": "Founder story in numbers",
+    "work": "WORK",
+    "process": "PROCESS"
   },
   "techStack": {
+    "kicker": "STACK",
     "heading": "Tech Stack",
-    "achievementsHeading": "Achievements"
-  },
-  "techLab": {
-    "heading": "Tech Lab",
-    "expandDemo": "Show interactive demo",
-    "collapseDemo": "Hide interactive demo"
+    "achievementsHeading": "AWARDS"
   },
   "contact": {
-    "heading": "Contact",
-    "emailButton": "Email me"
+    "kicker": "CONTACT",
+    "heading": "Contact"
+  },
+  "footer": {
+    "backToTop": "↑ Back to top"
   },
   "nav": {
-    "home": "Hero",
-    "ariaLabel": "Site navigation",
-    "summaryToggle": "Summary Mode",
+    "language": "Language",
     "skipToContent": "Skip to content"
   }
 }

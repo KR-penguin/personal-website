@@ -2,26 +2,30 @@
   "site": {
     "title": "권승찬"
   },
+  "hero": {
+    "lineOne": "Founder",
+    "lineTwo": "Engineer"
+  },
   "founderStory": {
-    "heading": "파운더 스토리"
+    "heading": "파운더 스토리",
+    "statsLabel": "숫자로 보는 파운더 스토리",
+    "work": "WORK",
+    "process": "PROCESS"
   },
   "techStack": {
+    "kicker": "STACK",
     "heading": "기술 스택",
     "achievementsHeading": "성과"
   },
-  "techLab": {
-    "heading": "기술 시험장",
-    "expandDemo": "인터랙티브 데모 보기",
-    "collapseDemo": "인터랙티브 데모 숨기기"
-  },
   "contact": {
-    "heading": "연락하기",
-    "emailButton": "이메일 보내기"
+    "kicker": "CONTACT",
+    "heading": "연락하기"
+  },
+  "footer": {
+    "backToTop": "↑ 맨 위로"
   },
   "nav": {
-    "home": "히어로",
-    "ariaLabel": "사이트 내비게이션",
-    "summaryToggle": "요약 모드",
+    "language": "언어",
     "skipToContent": "본문으로 건너뛰기"
   }
 }

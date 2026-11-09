@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 
 // jsdom has no IntersectionObserver; polyfill a no-op stub so components
-// using it (e.g. framer-motion's whileInView, useCountUp) don't crash on mount.
+// using it (e.g. next/link's viewport prefetching) don't crash on mount.
 if (typeof globalThis.IntersectionObserver === "undefined") {
   class MockIntersectionObserver implements IntersectionObserver {
     readonly root: Element | Document | null = null;
