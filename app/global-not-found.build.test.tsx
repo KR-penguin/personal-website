@@ -6,7 +6,7 @@ vi.mock("next/font/google", () => ({
   Archivo: () => ({ variable: "--font-archivo" }),
 }));
 
-import GlobalNotFound, { metadata } from "./global-not-found";
+import GlobalNotFound, { metadata } from "./global-not-found.build";
 import { BASE_PATH } from "@/lib/basePath";
 
 // A full <html> document can't be mounted into RTL's container <div>, so this
