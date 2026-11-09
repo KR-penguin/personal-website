@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { AppLocale } from "@/i18n/routing";
 import { pickLocale } from "@/lib/content";
-import { getSiteUrl } from "@/lib/site";
+import { pageUrl } from "@/lib/site";
 import { heroContent } from "@/content/hero";
 import { seoContent } from "@/content/seo";
 
@@ -16,7 +16,7 @@ export async function PersonJsonLd({ locale }: PersonJsonLdProps) {
   const t = await getTranslations({ locale, namespace: "site" });
   const { roleLine } = pickLocale(heroContent, locale);
   const { description } = pickLocale(seoContent, locale);
-  const url = `${getSiteUrl()}/${locale}`;
+  const url = pageUrl(locale);
 
   const schema = {
     "@context": "https://schema.org",

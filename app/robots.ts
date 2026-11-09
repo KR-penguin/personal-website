@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getSiteUrl } from "@/lib/site";
+import { fileUrl } from "@/lib/site";
+
+// Required for `output: "export"` — this route has no request-time data.
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${getSiteUrl()}/sitemap.xml`,
+    sitemap: fileUrl("sitemap.xml"),
   };
 }

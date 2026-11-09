@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import en from "@/messages/en.json";
 import ko from "@/messages/ko.json";
 import { seoContent } from "@/content/seo";
@@ -11,8 +11,7 @@ const MESSAGES_BY_LOCALE: Record<string, Record<string, Record<string, string>>>
 // next/font/google requires Next.js's build-time font loader, which isn't
 // available under vitest; stub it with the same shape (a `variable` class).
 vi.mock("next/font/google", () => ({
-  Inter: () => ({ variable: "--font-inter" }),
-  Space_Grotesk: () => ({ variable: "--font-space-grotesk" }),
+  Archivo: () => ({ variable: "--font-archivo" }),
 }));
 
 // Mirrors the {locale, namespace} call shape LocaleLayout's generateMetadata
@@ -25,6 +24,16 @@ vi.mock("next-intl/server", () => ({
 }));
 
 import { generateMetadata } from "./layout";
+
+const SITE = "https://example.test/site";
+
+beforeEach(() => {
+  vi.stubEnv("NEXT_PUBLIC_SITE_URL", SITE);
+});
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
 
 describe("generateMetadata", () => {
   it("returns the English title, description, and OG/Twitter metadata", async () => {
@@ -61,10 +70,25 @@ describe("generateMetadata", () => {
   it("sets metadataBase and hreflang alternates for both locales", async () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ locale: "en" }) });
 
-    expect(metadata.metadataBase?.toString()).toBe("http://localhost:3000/");
-    expect(metadata.alternates?.languages).toMatchObject({
-      en: "http://localhost:3000/en",
-      ko: "http://localhost:3000/ko",
+    expect(metadata.metadataBase?.toString()).toBe(SITE);
+    expect(metadata.alternates?.languages).toEqual({
+      en: `${SITE}/en/`,
+      ko: `${SITE}/ko/`,
+      "x-default": `${SITE}/`,
     });
+  });
+
+  it("points the OG and Twitter card image at the locale's .png file", async () => {
+    const metadata = await generateMetadata({ params: Promise.resolve({ locale: "ko" }) });
+    const image = {
+      url: `${SITE}/ko/og.png`,
+      width: 1200,
+      height: 630,
+      alt: ko.site.title,
+      type: "image/png",
+    };
+
+    expect(metadata.openGraph?.images).toEqual([image]);
+    expect(metadata.twitter?.images).toEqual([image]);
   });
 });

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
 import en from "@/messages/en.json";
 import ko from "@/messages/ko.json";
@@ -19,6 +19,16 @@ vi.mock("next-intl/server", () => ({
 
 import { PersonJsonLd } from "./PersonJsonLd";
 
+const SITE = "https://example.test/site";
+
+beforeEach(() => {
+  vi.stubEnv("NEXT_PUBLIC_SITE_URL", SITE);
+});
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
+
 function readJsonLd(container: HTMLElement) {
   const script = container.querySelector('script[type="application/ld+json"]');
   expect(script).not.toBeNull();
@@ -37,7 +47,7 @@ describe("PersonJsonLd", () => {
       name: en.site.title,
       jobTitle: heroContent.en.roleLine,
       description: seoContent.en.description,
-      url: "http://localhost:3000/en",
+      url: `${SITE}/en/`,
     });
   });
 
@@ -50,7 +60,7 @@ describe("PersonJsonLd", () => {
       name: ko.site.title,
       jobTitle: heroContent.ko.roleLine,
       description: seoContent.ko.description,
-      url: "http://localhost:3000/ko",
+      url: `${SITE}/ko/`,
     });
   });
 });
