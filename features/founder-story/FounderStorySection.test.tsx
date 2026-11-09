@@ -30,14 +30,23 @@ describe("FounderStorySection", () => {
     expect(within(stats).getByText("(02) Revenue")).toBeInTheDocument();
   });
 
-  it("lists every work project in order with its index code", async () => {
-    await renderSection("en");
+  it("lists every work project in the chosen order, without index codes", async () => {
+    const { container } = await renderSection("en");
 
-    const titles = screen.getAllByRole("heading", { level: 4 });
+    const titles = screen.getAllByRole("heading", { level: 4 }).map((title) => title.textContent);
+    expect(titles).toEqual([
+      "Smart Note",
+      "Without pytorch series (Building AI)",
+      "Skanmeskin (formerly Pickmeskin)",
+      "C. elegans Neural Simulation",
+      "Learn Up! - AI RPG Learning",
+      "Curriculum-Learning-Effectiveness-Study",
+      "Kodo Project (PPO Brawl Stars AI)",
+      "Hacked",
+      "Killing Mode",
+    ]);
     expect(titles).toHaveLength(workProjects.length);
-    expect(titles[0]).toHaveTextContent("Learn Up! - AI RPG Learning");
-    expect(titles[2]).toHaveTextContent("Skanmeskin (formerly Pickmeskin)");
-    expect(screen.getByText("#w009-0009/09")).toBeInTheDocument();
+    expect(container).not.toHaveTextContent(/#w\d{3}/);
   });
 
   it("prefixes project images with the deploy base path and localizes alt text", async () => {

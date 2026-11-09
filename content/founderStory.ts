@@ -26,49 +26,6 @@ const PAPER_PDF = "Paper — PDF";
 // same in both languages, so only the copy itself is localized per field.
 export const workProjects: WorkProject[] = [
   {
-    id: "learn-up",
-    title: "Learn Up! - AI RPG Learning",
-    wide: true,
-    blocks: [
-      {
-        kind: "summary",
-        text: {
-          en: "An AI-powered pixel learning RPG that turns your study notes into real-time, turn-based combat stages.",
-          ko: "공부 노트를 실시간 턴제 전투 스테이지로 바꿔주는 AI 기반 픽셀 학습 RPG.",
-        },
-      },
-      {
-        kind: "gallery",
-        layout: "pair",
-        images: [
-          {
-            src: "/images/work/learnup-gameplay.webp",
-            alt: { en: "Learn Up! gameplay", ko: "Learn Up! 게임 플레이 화면" },
-            aspect: "7/3",
-            fit: "contain",
-            backdrop: "raised",
-          },
-          {
-            src: "/images/work/learnup-playstore.webp",
-            alt: { en: "Learn Up! Google Play store listing", ko: "Learn Up! Google Play 스토어 페이지" },
-            aspect: "7/3",
-            fit: "cover",
-            backdrop: "raised",
-          },
-        ],
-      },
-      {
-        kind: "links",
-        links: [
-          {
-            label: { en: "View on Google Play", ko: "Google Play에서 보기" },
-            href: "https://play.google.com/store/apps/details?id=com.nplus.learnup&hl=en",
-          },
-        ],
-      },
-    ],
-  },
-  {
     id: "smart-note",
     title: "Smart Note",
     blocks: [
@@ -107,6 +64,28 @@ export const workProjects: WorkProject[] = [
       {
         kind: "links",
         links: [{ label: "learnupsmartnote.com", href: "https://learnupsmartnote.com" }],
+      },
+    ],
+  },
+  {
+    id: "without-pytorch",
+    title: "Without pytorch series (Building AI)",
+    blocks: [
+      {
+        kind: "summary",
+        text: {
+          en: "A learning project that builds AI from scratch, without libraries",
+          ko: "AI를 library없이 처음부터 구현하는 학습 프로젝트",
+        },
+      },
+      {
+        kind: "repos",
+        repos: [
+          { name: "Actor-Critic", href: "https://github.com/KR-penguin/Actor-Critic-without-pytorch" },
+          { name: "CNN", href: "https://github.com/KR-penguin/Simple-CNN-without-pytorch" },
+          { name: "MLP", href: "https://github.com/KR-penguin/MLP-without-pytorch" },
+          { name: "Q-learning", href: "https://github.com/KR-penguin/Q-learning-without-pytorch" },
+        ],
       },
     ],
   },
@@ -150,60 +129,6 @@ export const workProjects: WorkProject[] = [
           { label: { en: "Store code", ko: "매장 코드" }, value: "DEMO01", selectable: true },
           { label: { en: "Password", ko: "접근 암호" }, value: "DEMO2026!", selectable: true },
         ],
-      },
-    ],
-  },
-  {
-    id: "without-pytorch",
-    title: "Without pytorch series (Building AI)",
-    blocks: [
-      {
-        kind: "summary",
-        text: {
-          en: "A learning project that builds AI from scratch, without libraries",
-          ko: "AI를 library없이 처음부터 구현하는 학습 프로젝트",
-        },
-      },
-      {
-        kind: "repos",
-        repos: [
-          { name: "Actor-Critic", href: "https://github.com/KR-penguin/Actor-Critic-without-pytorch" },
-          { name: "CNN", href: "https://github.com/KR-penguin/Simple-CNN-without-pytorch" },
-          { name: "MLP", href: "https://github.com/KR-penguin/MLP-without-pytorch" },
-          { name: "Q-learning", href: "https://github.com/KR-penguin/Q-learning-without-pytorch" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "hacked",
-    title: "Hacked",
-    blocks: [
-      {
-        kind: "summary",
-        text: {
-          en: "A PvP strategy hacking game built with multiprocessing, the command design pattern, a relay server and more",
-          ko: "multiprocessing, command design pattern, relay server 등의 기술을 이용한 PVP 전략 해킹 게임",
-        },
-      },
-      {
-        kind: "note",
-        text: {
-          en: "Encouragement Award — 2025 National Youth Open SW GAME Coding Contest with Python, co-hosted by Hanyang University",
-          ko: "한양대와 함께하는 2025 전국 청소년 오픈 SW GAME 코딩대회 with 파이썬 대회 장려상 수상",
-        },
-      },
-      {
-        kind: "facts",
-        facts: [
-          { label: { en: "Team", ko: "팀 이름" }, value: "BitDesigner" },
-          { label: { en: "Prize", ko: "상금" }, value: "$110", emphasis: true },
-        ],
-      },
-      {
-        kind: "video",
-        youtubeId: "UYLskgJujEc",
-        title: { en: "Hacked introduction video", ko: "Hacked 소개 영상" },
       },
     ],
   },
@@ -265,6 +190,49 @@ export const workProjects: WorkProject[] = [
     ],
   },
   {
+    id: "learn-up",
+    title: "Learn Up! - AI RPG Learning",
+    wide: true,
+    blocks: [
+      {
+        kind: "summary",
+        text: {
+          en: "An AI-powered pixel learning RPG that turns your study notes into real-time, turn-based combat stages.",
+          ko: "공부 노트를 실시간 턴제 전투 스테이지로 바꿔주는 AI 기반 픽셀 학습 RPG.",
+        },
+      },
+      {
+        kind: "gallery",
+        layout: "pair",
+        images: [
+          {
+            src: "/images/work/learnup-gameplay.webp",
+            alt: { en: "Learn Up! gameplay", ko: "Learn Up! 게임 플레이 화면" },
+            aspect: "7/3",
+            fit: "contain",
+            backdrop: "raised",
+          },
+          {
+            src: "/images/work/learnup-playstore.webp",
+            alt: { en: "Learn Up! Google Play store listing", ko: "Learn Up! Google Play 스토어 페이지" },
+            aspect: "7/3",
+            fit: "cover",
+            backdrop: "raised",
+          },
+        ],
+      },
+      {
+        kind: "links",
+        links: [
+          {
+            label: { en: "View on Google Play", ko: "Google Play에서 보기" },
+            href: "https://play.google.com/store/apps/details?id=com.nplus.learnup&hl=en",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "curriculum-learning",
     title: "Curriculum-Learning-Effectiveness-Study",
     blocks: [
@@ -316,24 +284,6 @@ export const workProjects: WorkProject[] = [
             href: "https://drive.google.com/file/d/1i7JOeo8ADi9gqTl6kn-6VZ_HRy5H2PCB/view?usp=drive_link",
           },
         ],
-      },
-    ],
-  },
-  {
-    id: "killing-mode",
-    title: "Killing Mode",
-    blocks: [
-      {
-        kind: "summary",
-        text: {
-          en: "A shooting game built with UE5, C++ and ALS",
-          ko: "UE5 + C++ + ALS 을 사용해 만든 슈팅 게임",
-        },
-      },
-      {
-        kind: "video",
-        youtubeId: "lbId723VoiQ",
-        title: { en: "Killing Mode video", ko: "Killing Mode 영상" },
       },
     ],
   },
@@ -395,6 +345,56 @@ export const workProjects: WorkProject[] = [
             href: "https://kodoresearch.org/",
           },
         ],
+      },
+    ],
+  },
+  {
+    id: "hacked",
+    title: "Hacked",
+    blocks: [
+      {
+        kind: "summary",
+        text: {
+          en: "A PvP strategy hacking game built with multiprocessing, the command design pattern, a relay server and more",
+          ko: "multiprocessing, command design pattern, relay server 등의 기술을 이용한 PVP 전략 해킹 게임",
+        },
+      },
+      {
+        kind: "note",
+        text: {
+          en: "Encouragement Award — 2025 National Youth Open SW GAME Coding Contest with Python, co-hosted by Hanyang University",
+          ko: "한양대와 함께하는 2025 전국 청소년 오픈 SW GAME 코딩대회 with 파이썬 대회 장려상 수상",
+        },
+      },
+      {
+        kind: "facts",
+        facts: [
+          { label: { en: "Team", ko: "팀 이름" }, value: "BitDesigner" },
+          { label: { en: "Prize", ko: "상금" }, value: "$110", emphasis: true },
+        ],
+      },
+      {
+        kind: "video",
+        youtubeId: "UYLskgJujEc",
+        title: { en: "Hacked introduction video", ko: "Hacked 소개 영상" },
+      },
+    ],
+  },
+  {
+    id: "killing-mode",
+    title: "Killing Mode",
+    blocks: [
+      {
+        kind: "summary",
+        text: {
+          en: "A shooting game built with UE5, C++ and ALS",
+          ko: "UE5 + C++ + ALS 을 사용해 만든 슈팅 게임",
+        },
+      },
+      {
+        kind: "video",
+        youtubeId: "lbId723VoiQ",
+        title: { en: "Killing Mode video", ko: "Killing Mode 영상" },
       },
     ],
   },

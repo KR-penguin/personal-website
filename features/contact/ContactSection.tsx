@@ -43,14 +43,7 @@ export async function ContactSection({ locale }: ContactSectionProps) {
           >
             {CONTACT_EMAIL}
           </a>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="flex min-w-[200px] justify-between gap-6 border-2 border-on-accent bg-on-accent px-4 py-3 text-[15px] font-extrabold text-accent transition-colors hover:bg-transparent hover:text-on-accent"
-            >
-              <span>{t("emailButton")}</span>
-              <span aria-hidden="true">→</span>
-            </a>
+          <div className="flex">
             <CopyEmailButton
               email={CONTACT_EMAIL}
               copyLabel={content.copyLabel}

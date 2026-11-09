@@ -19,8 +19,7 @@
   },
   "contact": {
     "kicker": "CONTACT",
-    "heading": "연락하기",
-    "emailButton": "이메일 보내기"
+    "heading": "연락하기"
   },
   "footer": {
     "backToTop": "↑ 맨 위로"

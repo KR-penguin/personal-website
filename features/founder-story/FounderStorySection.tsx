@@ -11,10 +11,6 @@ interface FounderStorySectionProps {
 
 const pad = (value: number, width: number) => String(value).padStart(width, "0");
 
-// Row grid shared by each project's title row and body: an index column, then
-// the content. Collapses to a single column on narrow screens.
-const ROW_GRID = "grid grid-cols-1 sm:grid-cols-[minmax(120px,160px)_minmax(0,1fr)]";
-
 export async function FounderStorySection({ locale }: FounderStorySectionProps) {
   const t = await getTranslations("founderStory");
   const { stats, processNote } = pickLocale(founderStoryContent, locale);
@@ -55,39 +51,28 @@ export async function FounderStorySection({ locale }: FounderStorySectionProps) 
       </div>
 
       <ul>
-        {workProjects.map((project, index) => {
-          const number = index + 1;
-          return (
-            <li key={project.id} className="border-b-2 border-rule last:border-ink">
-              <div className={`${ROW_GRID} items-baseline gap-1 px-6 py-4 sm:gap-6`}>
-                <span className="text-xs font-semibold tabular-nums opacity-65">
-                  #w{pad(number, 3)}-{pad(number, 4)}/{total}
-                </span>
-                <h4 className="text-[clamp(22px,2.4vw,34px)] leading-[1.1] tracking-[-0.02em] [overflow-wrap:anywhere]">
-                  {project.title}
-                  {project.titleNote && (
-                    <>
-                      {" "}
-                      <span className="font-semibold opacity-55">
-                        {resolveText(project.titleNote, locale)}
-                      </span>
-                    </>
-                  )}
-                </h4>
-              </div>
-              <div className={`${ROW_GRID} gap-6 px-6 pt-2 pb-6`}>
-                <span aria-hidden="true" className="hidden sm:block" />
-                <div
-                  className={`flex flex-col gap-3 text-muted ${project.wide ? "max-w-[960px]" : "max-w-[720px]"}`}
-                >
-                  {project.blocks.map((block, blockIndex) => (
-                    <WorkBlock key={`${block.kind}-${blockIndex}`} block={block} locale={locale} />
-                  ))}
-                </div>
-              </div>
-            </li>
-          );
-        })}
+        {workProjects.map((project) => (
+          <li key={project.id} className="border-b-2 border-rule px-6 pt-4 pb-6 last:border-ink">
+            <h4 className="text-[clamp(22px,2.4vw,34px)] leading-[1.1] tracking-[-0.02em] [overflow-wrap:anywhere]">
+              {project.title}
+              {project.titleNote && (
+                <>
+                  {" "}
+                  <span className="font-semibold opacity-55">
+                    {resolveText(project.titleNote, locale)}
+                  </span>
+                </>
+              )}
+            </h4>
+            <div
+              className={`mt-6 flex flex-col gap-3 text-muted ${project.wide ? "max-w-[960px]" : "max-w-[720px]"}`}
+            >
+              {project.blocks.map((block, blockIndex) => (
+                <WorkBlock key={`${block.kind}-${blockIndex}`} block={block} locale={locale} />
+              ))}
+            </div>
+          </li>
+        ))}
       </ul>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))]">

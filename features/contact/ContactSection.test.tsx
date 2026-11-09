@@ -14,14 +14,16 @@ import { ContactSection } from "./ContactSection";
 import { CONTACT_EMAIL, contactContent } from "@/content/contact";
 
 describe("ContactSection", () => {
-  it("renders an email link, the visible email address, and a copy button", async () => {
+  it("renders the email address as its only mailto link, plus a copy button", async () => {
     mockMatchMedia(true);
     const ui = await ContactSection({ locale: "en" });
     render(ui);
 
-    const link = screen.getByRole("link", { name: en.contact.emailButton });
-    expect(link).toHaveAttribute("href", `mailto:${CONTACT_EMAIL}`);
-    expect(screen.getByText(CONTACT_EMAIL)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: en.contact.heading })).toBeInTheDocument();
+    const links = screen.getAllByRole("link");
+    expect(links).toHaveLength(1);
+    expect(links[0]).toHaveAccessibleName(CONTACT_EMAIL);
+    expect(links[0]).toHaveAttribute("href", `mailto:${CONTACT_EMAIL}`);
     expect(
       screen.getByRole("button", { name: contactContent.en.copyLabel })
     ).toBeInTheDocument();

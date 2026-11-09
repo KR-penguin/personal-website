@@ -80,7 +80,9 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: "nav" });
 
   return (
-    <html lang={locale} className={archivo.variable}>
+    // data-scroll-behavior lets Next turn off globals.css's smooth scrolling
+    // during route changes (e.g. the KO/EN toggle) so they jump to the top.
+    <html lang={locale} className={archivo.variable} data-scroll-behavior="smooth">
       <body className="overflow-x-clip antialiased">
         <PersonJsonLd locale={locale} />
         <SkipLink label={t("skipToContent")} targetId={MAIN_CONTENT_ID} />
