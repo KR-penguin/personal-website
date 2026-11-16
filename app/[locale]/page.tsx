@@ -27,6 +27,7 @@ export default async function LocaleHomePage({
   return (
     <>
       <main id="main-content">
+        <AiIntroSection locale={appLocale} />
         <HeroSection locale={appLocale} />
         <FounderStorySection locale={appLocale} />
         <Marquee
@@ -36,7 +37,6 @@ export default async function LocaleHomePage({
           trackClassName="font-bold"
         />
         <TechStackSection locale={appLocale} />
-        <AiIntroSection locale={appLocale} />
         <ContactSection locale={appLocale} />
       </main>
       <SiteFooter />

@@ -14,7 +14,8 @@ export async function AiIntroSection({ locale }: AiIntroSectionProps) {
   const content = pickLocale(aiIntroContent, locale);
 
   return (
-    <section id="ai-intro" className="border-t-2 border-ink">
+    // First section on the page: the bottom border separates it from the hero.
+    <section id="ai-intro" className="border-b-2 border-ink">
       <header className="flex flex-col gap-4 border-b-2 border-ink px-6 py-8">
         <p className="text-xs font-extrabold tracking-[.5em] text-accent">
           <SpacedText>{t("kicker")}</SpacedText>

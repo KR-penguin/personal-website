@@ -16,7 +16,7 @@ export async function SiteFooter() {
       />
       <div className="flex justify-between gap-4 px-6 py-4 text-xs font-semibold text-muted">
         <span>© {tSite("title")}</span>
-        <a href="#hero" className="transition-colors hover:text-accent">
+        <a href="#main-content" className="transition-colors hover:text-accent">
           {t("backToTop")}
         </a>
       </div>
