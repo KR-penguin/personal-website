@@ -48,7 +48,7 @@ export async function ContactSection({ locale }: ContactSectionProps) {
               text={CONTACT_EMAIL}
               copyLabel={content.copyLabel}
               copiedLabel={content.copiedLabel}
-              className="border-on-accent text-on-accent hover:bg-on-accent hover:text-accent"
+              className="border-on-accent bg-transparent text-on-accent hover:bg-on-accent hover:text-accent"
             />
           </div>
         </div>

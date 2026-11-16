@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sean Channie Quinn — Portfolio
 
-## Getting Started
+Personal portfolio of Sean Channie Quinn (권승찬): founder story, tech stack, a
+copy-for-your-AI self-introduction, and contact.
 
-First, run the development server:
+**Live site:** https://kr-penguin.github.io/personal-website/
+
+Available in English (`/en/`) and Korean (`/ko/`). The root page sends visitors
+to Korean when their browser language is Korean, and to English otherwise.
+
+## Stack
+
+- [Next.js](https://nextjs.org) 16 (App Router), exported as a fully static site (`output: "export"`)
+- React 19, TypeScript, Tailwind CSS 4
+- [next-intl](https://next-intl.dev) for the two locales
+- Vitest + Testing Library for tests
+- GitHub Pages for hosting, deployed by GitHub Actions
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000/personal-website/ in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The site is built with `basePath: "/personal-website"` (see `lib/basePath.ts`)
+because GitHub Pages serves this repo under that path. Every page and asset
+lives under `/personal-website/`, so `http://localhost:3000/` on its own shows
+a 404.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm test` | Run the test suite once |
+| `npm run lint` | Lint with ESLint |
+| `npm run build` | Build the static site into `out/` |
 
-To learn more about Next.js, take a look at the following resources:
+## Project layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Path | Contents |
+| --- | --- |
+| `app/` | Routes: `[locale]/` pages, the root language redirect, OG image, robots, sitemap |
+| `features/` | Page sections (hero, founder story, tech stack, AI intro, contact, footer) |
+| `components/` | Shared UI (copy button, marquee, typography) |
+| `content/` | Site copy per locale. Edit these files to change text on the page |
+| `messages/` | next-intl UI strings (`en.json`, `ko.json`) |
+| `public/` | Images and other static files |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The AI self-introduction text lives in `content/aiIntroText.ts`.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every push to `main` runs `.github/workflows/deploy.yml`, which installs
+dependencies, runs the tests, builds the static site, and publishes `out/` to
+GitHub Pages. A failing test stops the deploy.

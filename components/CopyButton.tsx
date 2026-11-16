@@ -6,7 +6,10 @@ interface CopyButtonProps {
   text: string;
   copyLabel: string;
   copiedLabel: string;
-  /** Colour/border styling; layout and type are shared. */
+  /**
+   * Colour/border/background styling; layout and type are shared. The base
+   * sets no background, so a caller's bg-* is never overridden by it.
+   */
   className: string;
   /**
    * Element showing `text`. If the Clipboard API is refused, its contents are
@@ -60,7 +63,7 @@ export function CopyButton({
     <button
       type="button"
       onClick={handleCopy}
-      className={`flex min-w-[160px] cursor-pointer justify-between gap-6 border-2 bg-transparent px-4 py-3 text-left text-[15px] font-extrabold transition-colors ${className}`}
+      className={`flex min-w-[160px] cursor-pointer justify-between gap-6 border-2 px-4 py-3 text-left text-[15px] font-extrabold transition-colors ${className}`}
     >
       <span aria-live="polite">{copied ? copiedLabel : copyLabel}</span>
       <span aria-hidden="true">⧉</span>
