@@ -21,7 +21,7 @@ export const AI_INTRO_TEXT = `**이건 AI에게 나에 대한 context를 알려�
 - 2026년 6월 : YC matching service에서 우리 스타트업에 합류하면 최소 6자리 이상의 연봉을 주겠다는 제안을 받음. 미국에 바로 가는 조건이여서 할 수 없었음. 
 - 2026년 7월 : [2 일부] pytorch 없이 Q-learning, MLP 구현, [1] 퀘이크 3 역제곱근, [2] pytorch없이 CNN 구현 
 - 2026년 8월 : PuffeRL(pufferlib 3.0.0 PPO + Puffer Advantage + prioritized segment replay) + MAPPO + LSTM memory + Transformer Entity Encoder + YOLOv8 CV 으로 브롤스타즈 프로게이머들을 위한 연습게임용 RL AI agent 제작 프로젝트 시작 (side hobby project) -> 게임으로 브롤스타즈를 선택한 이유는 내 절친이 한국 브롤스타즈 1등 프로게이머 Team Elektros 소속 Doin이기 때문임.
-- 2026년 9월 : 870만원(4500$)짜리 앱 개발 외주를 받음(이틀만에 데모를 구현해줘버려서 client가 감탄하며 바로 계약 체결 - 870만원)
+- 2026년 9월 : 870만원(6500$)짜리 앱 개발 외주를 받음(이틀만에 데모를 구현해줘버려서 client가 감탄하며 바로 계약 체결 - 870만원)
 
 최근에는 여러 분야를 전부 공부하기 보다는 수학을 기반으로한 Reinforce Learning을 집중적으로 파고 있음.
 취미로 Tryhackme CTF 품
