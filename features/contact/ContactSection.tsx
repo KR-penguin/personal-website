@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import type { AppLocale } from "@/i18n/routing";
+import { CopyButton } from "@/components/CopyButton";
 import { SpacedText } from "@/components/typography/SpacedText";
 import { CONTACT_EMAIL, contactContent } from "@/content/contact";
 import { pickLocale } from "@/lib/content";
-import { CopyEmailButton } from "./CopyEmailButton";
 
 interface ContactSectionProps {
   locale: AppLocale;
@@ -23,7 +23,7 @@ export async function ContactSection({ locale }: ContactSectionProps) {
         <span>
           <SpacedText>{t("kicker")}</SpacedText>
         </span>
-        <span aria-hidden="true">04</span>
+        <span aria-hidden="true">05</span>
       </div>
       <div className="overflow-hidden py-6">
         <h2 className="px-6 text-[clamp(72px,14vw,240px)] leading-[.92] font-black tracking-[-0.05em]">
@@ -44,10 +44,11 @@ export async function ContactSection({ locale }: ContactSectionProps) {
             {CONTACT_EMAIL}
           </a>
           <div className="flex">
-            <CopyEmailButton
-              email={CONTACT_EMAIL}
+            <CopyButton
+              text={CONTACT_EMAIL}
               copyLabel={content.copyLabel}
               copiedLabel={content.copiedLabel}
+              className="border-on-accent text-on-accent hover:bg-on-accent hover:text-accent"
             />
           </div>
         </div>

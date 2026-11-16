@@ -19,6 +19,9 @@ vi.mock("@/features/founder-story/FounderStorySection", () => ({
 vi.mock("@/features/tech-stack/TechStackSection", () => ({
   TechStackSection: () => <div>Tech Stack stub</div>,
 }));
+vi.mock("@/features/ai-intro/AiIntroSection", () => ({
+  AiIntroSection: () => <div>AI Intro stub</div>,
+}));
 vi.mock("@/features/contact/ContactSection", () => ({
   ContactSection: () => <div>Contact stub</div>,
 }));
@@ -38,7 +41,7 @@ describe("LocaleHomePage", () => {
 
     const main = screen.getByRole("main");
     expect(main).toHaveAttribute("id", "main-content");
-    const sections = ["Hero stub", "Founder stub", "Marquee stub", "Tech Stack stub", "Contact stub"];
+    const sections = ["Hero stub", "Founder stub", "Marquee stub", "Tech Stack stub", "AI Intro stub", "Contact stub"];
     expect(Array.from(main.children).map((child) => child.textContent)).toEqual(sections);
     expect(main).not.toContainElement(screen.getByText("Footer stub"));
   });
