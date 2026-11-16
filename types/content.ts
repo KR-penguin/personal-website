@@ -89,6 +89,13 @@ export interface TechStackContent {
   achievements: Achievement[];
 }
 
+export interface AiIntroContent {
+  /** Label on the panel holding the copyable text. */
+  panelLabel: string;
+  copyLabel: string;
+  copiedLabel: string;
+}
+
 export interface ContactContent {
   cta: string;
   copyLabel: string;

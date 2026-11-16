@@ -5,6 +5,7 @@ import { BAND_BITS } from "@/content/marquee";
 import { HeroSection } from "@/features/hero/HeroSection";
 import { FounderStorySection } from "@/features/founder-story/FounderStorySection";
 import { TechStackSection } from "@/features/tech-stack/TechStackSection";
+import { AiIntroSection } from "@/features/ai-intro/AiIntroSection";
 import { ContactSection } from "@/features/contact/ContactSection";
 import { SiteFooter } from "@/features/footer/SiteFooter";
 import { routing } from "@/i18n/routing";
@@ -35,6 +36,7 @@ export default async function LocaleHomePage({
           trackClassName="font-bold"
         />
         <TechStackSection locale={appLocale} />
+        <AiIntroSection locale={appLocale} />
         <ContactSection locale={appLocale} />
       </main>
       <SiteFooter />
