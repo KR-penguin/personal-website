@@ -3,7 +3,12 @@ import type { LocalizedContent, TechStackContent } from "@/types/content";
 export const techStackContent: LocalizedContent<TechStackContent> = {
   en: {
     categories: [
-      { id: "ai", title: "AI", summary: "LSTM, Transformer, PPO and more" },
+      {
+        id: "ai",
+        title: "AI",
+        summary:
+          "Pursuing deep understanding — e.g. implementing Actor-Critic from scratch in pure NumPy, with no help from AI or the internet",
+      },
       {
         id: "languages",
         title: "Languages & Systems",
@@ -40,7 +45,11 @@ export const techStackContent: LocalizedContent<TechStackContent> = {
   },
   ko: {
     categories: [
-      { id: "ai", title: "AI", summary: "LSTM, Transformer, PPO 등" },
+      {
+        id: "ai",
+        title: "AI",
+        summary: "Actor-Critic을 NumPy만으로 AI&인터넷 도움 없이 순수 구현 등 깊이 있는 이해 추구",
+      },
       {
         id: "languages",
         title: "언어 & 시스템",
