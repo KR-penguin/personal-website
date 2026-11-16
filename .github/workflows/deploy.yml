@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SITE_URL: https://kr-penguin.github.io/personal-website
+      # Pages serves this repo under /personal-website/; Vercel builds at the root.
+      NEXT_PUBLIC_BASE_PATH: /personal-website
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -11,11 +11,11 @@ vi.mock("next-intl/server", () => ({
 import { SiteFooter } from "./SiteFooter";
 
 describe("SiteFooter", () => {
-  it("renders the copyright line and a back-to-top link to the hero", async () => {
+  it("renders the copyright line and a back-to-top link to the start of the main content", async () => {
     mockMatchMedia(true);
     render(await SiteFooter());
 
     expect(screen.getByRole("contentinfo")).toHaveTextContent(`© ${ko.site.title}`);
-    expect(screen.getByRole("link", { name: ko.footer.backToTop })).toHaveAttribute("href", "#hero");
+    expect(screen.getByRole("link", { name: ko.footer.backToTop })).toHaveAttribute("href", "#main-content");
   });
 });

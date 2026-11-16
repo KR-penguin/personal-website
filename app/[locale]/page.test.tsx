@@ -41,7 +41,7 @@ describe("LocaleHomePage", () => {
 
     const main = screen.getByRole("main");
     expect(main).toHaveAttribute("id", "main-content");
-    const sections = ["Hero stub", "Founder stub", "Marquee stub", "Tech Stack stub", "AI Intro stub", "Contact stub"];
+    const sections = ["AI Intro stub", "Hero stub", "Founder stub", "Marquee stub", "Tech Stack stub", "Contact stub"];
     expect(Array.from(main.children).map((child) => child.textContent)).toEqual(sections);
     expect(main).not.toContainElement(screen.getByText("Footer stub"));
   });
